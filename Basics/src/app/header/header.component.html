@@ -1,0 +1,26 @@
+<div class="m-2">
+  <h1>Welcome to Angular {{title}}</h1>
+  <button (click)="changeTitle()" class="btn btn-primary">title</button>
+  <ul *ngFor="let name of names; let i = index">
+    <li>{{name}} - {{i}}</li>
+  </ul>
+  <h3>{{description()}}</h3>
+  <h4>{{reactivity()}}</h4>
+  <button [disabled]="changed()" class="btn btn-success" (click)="changeReactivity()">Change</button>
+  <button [disabled]="updated()" class="btn btn-warning ms-2" (click)="updateReactivity()">Update</button>
+  <p>{{length()}}</p>
+  @if (changed()){
+    <h2>Admin Settings</h2>
+  }@else {
+    <h2>User Settings</h2>
+  }
+  <input type="text" [value]="company()" (input)="onChange($event)">
+  <h4>{{company()}}</h4>
+  <button (click)="decrement()">-</button>
+  <span>{{cartValue}}</span>
+  <button (click)="increment()">+</button><br>
+  <p>{{searchWord}}</p>
+  <input [(ngModel)]="searchWord" type="text">
+</div>
+
+
