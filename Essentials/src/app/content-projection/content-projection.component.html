@@ -1,0 +1,13 @@
+<p>content-projection works!</p>
+<button (click)="changeContent()">Change Content</button>
+<ng-container *ngIf="!contentSwitch; else template">
+  <h1>I will visible always</h1>
+  <h2>You shouldn't need to access me</h2>
+</ng-container>
+<ng-template #template>
+  <h1>I will not visible until I'm Accesed</h1>
+  <h2>You should access me using ngTemplateOutlet Directive</h2>
+</ng-template>
+<h1>I will appear after here</h1>
+<div *ngTemplateOutlet="template"></div>
+<!-- <ng-container></ng-container> -->

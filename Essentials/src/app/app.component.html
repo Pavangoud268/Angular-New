@@ -1,0 +1,9 @@
+<!-- <app-refs></app-refs> -->
+ <input type="text" #inpel>
+ <button (click)="change(inpel)">Change</button>
+ <button (click)="destroy()">Destroy</button>
+<lifecycle-hooks [heading]="title" *ngIf="toDestroy">
+  <p>abc</p>
+</lifecycle-hooks>
+<projection></projection>
+

@@ -1,0 +1,21 @@
+<div>
+  <h2>Dream Destination : <span>{{state}}</span></h2>
+  <h4>Places to Visit</h4>
+  <ul *ngFor="let place of places">
+    <li>{{place}}</li>
+  </ul>
+  <h3>Budget : {{budget}}</h3>
+  <p>No.of People {{noOfPpl}}</p>
+  <input *ngIf="inputt" type="text" #ppl >
+  <button (click)="showInput()" >Add People</button><br>
+  <div>
+    <ul *ngFor="let pep of people" >
+      <li>{{pep}}</li>
+    </ul>
+  </div>
+  <input type="text" placeholder="FirstName" #inpel><br>
+  <input type="text" placeholder="MiddleName" #inpel><br>
+  <input type="text" placeholder="LastName" #inpel><br>
+  <button (click)="showFullName()">Full Name</button>
+  <h3>{{fullName}}</h3>
+</div>
