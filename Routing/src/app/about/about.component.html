@@ -1,0 +1,27 @@
+<main class="mt-5">
+  <div class="container">
+    <div class="bg-light shadow-sm rounded p-4 p-lg-5 mx-auto" style="max-width: 900px; background-color: #DFD5A5;">
+      <h1 class="display-5 fw-bold text-center text-dark mb-4">{{ aboutTitle }}</h1>
+
+      <div class="mb-3">
+        <p class="fs-5 text-dark">{{ about1 }}</p>
+        <p class="fs-5 text-dark">{{ about2 }}</p>
+        <p class="fs-5 text-dark">{{ about3 }}</p>
+      </div>
+
+      <div class="mt-4">
+        <ul class="list-group list-group-flush">
+          <li *ngFor="let about of aboutServices" class="list-group-item bg-transparent border-0 ps-0">
+            <i class="bi bi-dot fs-4 text-primary"></i> {{ about }}
+          </li>
+        </ul>
+      </div>
+      <div class="mt-4">
+        <!-- <a routerLink="/About" class="btn btn-primary btn-lg px-4">
+          Learn More
+        </a> -->
+        <button (click)="toHome()" class="btn btn-primary btn-lg px-4">Go Back</button>
+      </div>
+    </div>
+  </div>
+</main>

@@ -1,0 +1,18 @@
+<div class="container my-4">
+  <h4 class="mb-3 text-secondary">Search Results:</h4>
+
+  <div *ngIf="searchexer.length > 0; else noResults">
+    <ul class="list-group">
+      <li *ngFor="let exer of searchexer" class="list-group-item d-flex align-items-center">
+        <i class="bi bi-search me-2 text-primary"></i>
+        <span>{{ exer }}</span>
+      </li>
+    </ul>
+  </div>
+
+  <ng-template #noResults>
+    <div class="alert alert-warning" role="alert">
+      No matching exercises found.
+    </div>
+  </ng-template>
+</div>

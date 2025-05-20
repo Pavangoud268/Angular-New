@@ -1,0 +1,75 @@
+<div class="container mt-5"  >
+  <form (ngSubmit)="onFormSubmitted()" #formel="ngForm" class="p-4 border rounded shadow-sm bg-light">
+    <!-- <div ngModelGroup="total" #fgroup="ngModelGroup"> -->
+      <div class="mb-3" >
+      <label for="name" class="form-label">First Name:</label>
+      <input class="form-control" type="text" id="name" placeholder="Enter Name" name="Name" [(ngModel)]="Namee" required #fname="ngModel">
+      <small [ngStyle]="{'color': 'red'}" *ngIf="fname.touched && fname.invalid">*Required</small>
+      <!-- <span *ngIf="Namee">Name is : {{Namee}}</span> -->
+    </div>
+
+    <div class="mb-3" >
+      <label for="lastname" class="form-label"> Last Name:</label>
+      <input class="form-control" type="text" id="lastname" placeholder="Enter Last Name" name="LastName" [(ngModel)]="Lname" required #flname="ngModel">
+      <small [ngStyle]="{'color': 'red'}" *ngIf="flname.touched && flname.invalid">*Required</small>
+      <!-- <span *ngIf="Namee">Name is : {{Lname}}</span> -->
+    </div>
+
+    <div class="mb-3">
+      <label for="age" class="form-label">Age:</label>
+      <input class="form-control" type="number" id="age" placeholder="Enter Age" name="Age" [(ngModel)]="age" required  #fage="ngModel">
+      <small [ngStyle]="{'color': 'red'}" *ngIf= "fage.invalid && fage.touched">*Required</small>
+    </div>
+
+    <div class="mb-3">
+      <label for="dob" class="form-label">Date Of Birth:</label>
+      <input class="form-control" type="date" id="dob" name="Dob" ngModel required  >
+      <!-- <small [ngStyle]="{'color': 'red'}" *ngIf= "fage.invalid && fage.touched">*Required</small> -->
+    </div>
+
+    <div class="mb-3">
+      <label for="username" class="form-label">UserName:</label>
+      <input class="form-control" type="text" id="username"  name="Username" ngModel required  #fusername="ngModel">
+    </div>
+    <button [disabled]="fname.invalid || flname.invalid || fage.invalid" type="button" (click)="generateUsername()">Generate UserName</button>
+
+    <div class="mb-3">
+      <label for="location" class="form-label">Location:</label>
+      <input class="form-control" type="text" id="location" placeholder="Enter Location" name="Location" ngModel required #flocation="ngModel">
+      <small [ngStyle]="{'color': 'red'}" *ngIf="flocation.touched && flocation.invalid">*Required</small>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label me-3">Gender:</label>
+      <div class="form-check form-check-inline" *ngFor="let button of buttons">
+        <input class="form-check-input" type="radio" [value]="button.value" name="gender" ngModel id="{{button.value}}" required>
+        <label class="form-check-label" [for]="button.value">{{ button.label }}</label>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="country" class="form-label">Country:</label>
+      <select id="country" name="country" ngModel class="form-select" #fcountry="ngModel" required>
+        <option value="india">India</option>
+        <option value="usa">USA</option>
+        <option value="uk">UK</option>
+      </select>
+      <small [ngStyle]="{'color': 'red'}" *ngIf="fcountry.touched && fcountry.invalid">*Required</small>
+    </div>
+
+    <div class="mb-3">
+      <input class="form-select-lg" type="checkbox" id="agreement"  name="Agreement" ngModel required #fagreement="ngModel">
+      <label for="agreement" class="form-label ms-1"> I, agree to all conditions</label>
+      <!-- <small [ngStyle]="{'color': 'red'}" *ngIf="flocation.touched && flocation.invalid">*Required</small> -->
+    </div>
+
+    <!-- <div>
+      <small [ngStyle]="{'color': 'red'}" *ngIf="fgroup.touched && fgroup.invalid">*Some fields are missing</small>
+    </div> -->
+    <button type="submit" class="btn btn-primary w-50"  [disabled]="formel.invalid">Submit</button>
+    <button type="button" class="btn btn-danger w-40 ms-3" (click)="reset()" >Reset</button>
+    <!-- </div> -->
+
+  </form>
+</div>
+<h1>{{username}}</h1>

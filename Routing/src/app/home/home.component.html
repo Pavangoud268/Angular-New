@@ -1,0 +1,39 @@
+<main class="mt-5">
+  <!-- Search Section -->
+  <div class="container mb-4">
+    <div class="d-flex flex-column flex-md-row align-items-center gap-2">
+      <input type="text" #inpRef placeholder="Search Tasks" class="form-control form-control-lg w-100 w-md-50" />
+      <button class="btn btn-outline-primary btn-lg" (click)="onSearch(inpRef.value)">Search</button>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="container">
+    <div class="bg-light shadow rounded p-4 p-lg-5 text-center mx-auto" style="max-width: 800px;">
+      <h1 class="display-5 fw-bold text-primary mb-3">{{ homeTitle }}</h1>
+      <h4 class="text-secondary mb-4">{{ tagLine }}</h4>
+
+      <div class="text-start">
+        <ul class="list-group list-group-flush">
+          <li *ngFor="let service of services" class="list-group-item bg-transparent">
+            <i class="bi bi-check-circle-fill text-success me-2"></i>{{ service }}
+          </li>
+        </ul>
+      </div>
+
+      <div class="mt-4">
+        <button (click)="toAbout()" class="btn btn-primary btn-lg px-4">Learn More</button>
+        <!-- <a routerLink="/About">About</a> -->
+      </div>
+    </div>
+    <!-- <div id="exercise" fragment="exercise">
+    <app-exercise></app-exercise>
+  </div>
+  <div id="about" fragment="about">
+    <app-about></app-about>
+  </div>
+  <div id="subscribe" fragment="subscribe">
+    <app-subscribe></app-subscribe>
+  </div> -->
+  </div>
+</main>

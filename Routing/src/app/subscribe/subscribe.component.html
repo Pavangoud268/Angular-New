@@ -1,0 +1,26 @@
+<div class="container mt-5" style="max-width: 600px;">
+  <div class="bg-light p-4 rounded shadow-sm">
+    <form>
+      <div class="mb-3">
+        <label class="form-label">Name:</label>
+        <input type="text" class="form-control" name="first" placeholder="Enter your name" [(ngModel)]="Name" >
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Card No:</label>
+        <input type="number" class="form-control" name="cardNum" placeholder="Enter card number" [(ngModel)]="cardNum" >
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Country:</label>
+        <select class="form-select" name="country" [(ngModel)]="country" >
+          <option value="india">India</option>
+          <option value="usa">USA</option>
+          <option value="uk">UK</option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn btn-primary w-100" (click)="onSubmit()">Submit</button>
+    </form>
+  </div>
+</div>

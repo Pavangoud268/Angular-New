@@ -1,0 +1,32 @@
+<header style="background-color: #e7f3ff;" class="border-bottom">
+  <div class="container py-3 d-flex justify-content-between align-items-center">
+
+    <div class="d-flex align-items-center">
+      <a routerLink="Home" class="text-secondary text-decoration-none px-3 py-1 rounded hover-bg"
+         routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
+      <a routerLink="About" class="text-secondary text-decoration-none px-3 py-1 rounded hover-bg ms-3"
+         routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">About</a>
+      <a routerLink="Service" class="text-secondary text-decoration-none px-3 py-1 rounded hover-bg ms-3"
+         routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Service</a>
+      <a routerLink="Subscribe" class="text-secondary text-decoration-none px-3 py-1 rounded hover-bg ms-3"
+         routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Subscribe</a>
+      <a routerLink="Exercise" class="text-secondary text-decoration-none px-3 py-1 rounded hover-bg ms-3"
+         routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Exercise</a>
+    </div>
+
+    <div class="d-flex align-items-center">
+      <a routerLink="/Login" class="text-secondary text-decoration-none px-3 py-1 rounded hover-bg ms-3">Login</a>
+      <a routerLink="/Login" [queryParams]="{ logout: true }"
+         class="text-secondary text-decoration-none px-3 py-1 rounded hover-bg ms-2">Logout</a>
+    </div>
+    <!-- <a routerLink="Home" fragment="exercise">Exercise</a>
+    <a routerLink="Home" fragment="about">About</a>
+    <a routerLink="Home" fragment="subscribe">Subscribe</a> -->
+  </div>
+</header>
+<style>
+  .hover-bg:hover {
+    background-color: #e9ecef;
+    color: #000;
+  }
+</style>

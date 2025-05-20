@@ -1,0 +1,8 @@
+<headerapp></headerapp>
+<div *ngIf="showPlaceHolder ; else outlet">
+<app-placeholders></app-placeholders>
+</div>
+<ng-template #outlet>
+<router-outlet></router-outlet>
+</ng-template>
+<footerapp></footerapp>

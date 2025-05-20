@@ -1,0 +1,6 @@
+<h1>{{title | uppercase}}</h1>
+<h2>{{date | date : 'fullDate' }}</h2>
+<h3>{{currency | currency : 'INR' }}</h3>
+<h3>{{details | custom }}</h3>
+<button (click)="changeName()">Change name</button>
+<h2>{{name | custom }}</h2>

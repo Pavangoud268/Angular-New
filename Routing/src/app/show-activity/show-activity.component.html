@@ -1,0 +1,27 @@
+<div class="container my-5 p-4 border rounded bg-light shadow-sm" *ngIf="selectedActivity">
+  <div class="mb-4">
+    <h1 class="text-primary">Goal: {{ selectedActivity.name }}</h1>
+    <h4 class="text-secondary mt-3">Description: {{ selectedActivity.about }}</h4>
+    <p class="fs-5 mt-2">Duration: {{ selectedActivity.duration }} months</p>
+  </div>
+
+  <div class="mb-4">
+    <p class="fw-semibold text-success" *ngIf="selectedActivity.commitment; else notCommitted">
+      ✅ I am fully committed to this
+    </p>
+    <ng-template #notCommitted>
+      <p class="fw-semibold text-danger">❌ Not committed to this</p>
+    </ng-template>
+
+    <div class="form-check mt-3">
+      <input type="checkbox" id="commitmentCheck" class="form-check-input" (change)="onCommitmentChange()">
+      <label for="commitmentCheck" class="form-check-label">Toggle Commitment</label>
+    </div>
+  </div>
+
+  <div class="text-end">
+    <button class="btn btn-outline-secondary" (click)="toPrevious()"> <-Back</button>
+    <button class="btn btn-outline-secondary ms-3" (click)="toNext()">Next-></button>
+
+  </div>
+</div>
