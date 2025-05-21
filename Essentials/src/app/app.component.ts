@@ -12,11 +12,11 @@ import { ContentProjectionComponent } from './content-projection/content-project
 })
 export class AppComponent {
   title = 'Essentials';
-  change(el : HTMLInputElement){
-    this.title = el.value
-  }
-  toDestroy : boolean = true
-  destroy(){
-    this.toDestroy = !this.toDestroy
-  }
+  // change(el : HTMLInputElement){
+  //   this.title = el.value
+  // }
+  // toDestroy : boolean = true
+  // destroy(){
+  //   this.toDestroy = !this.toDestroy
+  // }
 }

@@ -1,0 +1,29 @@
+<div class="container mt-4">
+  <div class="mb-4 text-end">
+    <button class="btn btn-primary" (click)="toggleShowForm()">
+      Add New Record
+    </button>
+  </div>
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" *ngIf="!showForm; else form ">
+    <div class="col" *ngFor="let dataa of receivedData">
+      <div class="card h-100 shadow-sm border-0 bg-light">
+        <div class="card-body">
+          <h5 class="card-title text-primary mb-2">{{ dataa.name }}</h5>
+          <p class="card-text mb-1">
+            <strong>Age:</strong> {{ dataa.age }}
+          </p>
+          <p class="card-text mb-1">
+            <strong>Address:</strong> {{ dataa.address }}
+          </p>
+          <p class="card-text mb-0">
+            <strong>Skill:</strong> {{ dataa.skill }}
+          </p>
+          <button class="btn btn-danger" (click)="deleteUser(dataa.id)">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ng-template class="mt-5" #form >
+    <app-form (sendFormdata)="recieveData($event)"></app-form>
+  </ng-template>
+</div>

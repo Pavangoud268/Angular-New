@@ -15,7 +15,9 @@ export const routes: Routes = [
   //{path:'',redirectTo:'Home',pathMatch:'full'},
   {path:'',component:HomeComponent},
   {path:'Home',component:HomeComponent,title:'Home'},
-  {path:'About',component:AboutComponent,title:'About'},
+  {path:'About',title:'About',loadComponent: ()=>
+    import('./about/about.component').then(m=>m.AboutComponent)
+  },
   {path:'info',redirectTo:'Subscribe',pathMatch:'prefix'},
   {path:'Service',component:ContactComponent,title:'Service',resolve:{courses : resolve}},
   // {path:'Service/:id',component:ShowActivityComponent},

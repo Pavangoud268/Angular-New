@@ -21,6 +21,7 @@ export class RefsComponent {
   @ViewChild('ppl') ppll!: ElementRef;
   showInput(){
     this.inputt = !this.inputt
+    console.log(this.ppll)
     if(!(this.ppll.nativeElement.value.trim() === ''))
     this.people.push(this.ppll.nativeElement.value)
     this.ppll.nativeElement.value = ''

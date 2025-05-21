@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, ContentChild, ElementRef, Input, OnChanges, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'lifecycle-hooks',
@@ -8,11 +8,13 @@ import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 })
 export class LifecycleHooksComponent implements OnChanges{
   name : string = 'Pavan'
-  @Input() heading! : string;
+  // @Input() heading! : string;
   // constructor(){
   //   console.log(this.name)
   //   console.log(this.heading)
   // }
+
+  @ContentChild('content') contentProjection! : ElementRef
   ngOnInit(){
     console.log('ngOnInit Life Cycle Hook')
   }
@@ -41,5 +43,11 @@ export class LifecycleHooksComponent implements OnChanges{
   }
   ngOnDestroy(){
     console.log('ngOnDestroy Life Cycle Hook')
+  }
+  getAccess(){
+    console.log(this.contentProjection)
+  }
+  check(){
+    console.log('kjhjghjv')
   }
 }
