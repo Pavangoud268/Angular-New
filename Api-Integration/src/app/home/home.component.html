@@ -1,0 +1,63 @@
+<div class="container py-5">
+
+  <div class="container py-5">
+
+    <div class="position-relative" style="max-width: 300px; margin-left: auto;">
+      <input
+        class="form-control"
+        type="text"
+        placeholder="Search interns..."
+        [(ngModel)]="searchQuery"
+        (input)="onSearchInput()"
+      />
+
+      <ul *ngIf="filteredData.length > 0 && searchQuery"
+          class="dropdown-menu show w-100 mt-1 shadow-sm"
+          style="max-height: 200px; overflow-y: auto; position: absolute; z-index: 1000;">
+        <li *ngFor="let item of filteredData"
+            class="dropdown-item"
+            (click)="toIntern(item.id)">
+          {{ item?.name }}
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+
+
+
+  <div class="text-center mb-5">
+    <h1 class="display-5 fw-bold text-primary">Ariqt Intern Management Portal</h1>
+    <p class="lead text-muted">
+      This portal helps you manage, explore, and update all intern details including their names,
+      skills, addresses, and other relevant information.
+    </p>
+  </div>
+
+  <div class="row justify-content-center mb-5">
+    <div class="col-md-8">
+      <div class="card shadow border-0">
+        <div class="card-body">
+          <h4 class="card-title text-secondary mb-3">What can you do here?</h4>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">📋 View all intern details at a glance</li>
+            <li class="list-group-item">➕ Add new interns and their skill information</li>
+            <li class="list-group-item">✏️ Edit and update existing intern records</li>
+            <li class="list-group-item">🗑️ Delete records that are no longer needed</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="text-center">
+    <a routerLink="/form" class="btn btn-success btn-lg me-3">
+      <i class="bi bi-plus-circle"></i> Add New Intern
+    </a>
+    <a routerLink="/interns" class="btn btn-outline-primary btn-lg">
+      <i class="bi bi-people"></i> View Interns
+    </a>
+  </div>
+</div>
+

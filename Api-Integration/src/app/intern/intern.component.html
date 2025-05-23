@@ -1,0 +1,35 @@
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card shadow-lg border-0 intern-detail-card">
+        <div class="card-body p-4">
+          <h3 class="text-center text-primary mb-4">Intern Details</h3>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <strong>Name:</strong> {{ selectedinterns?.name }}
+            </li>
+            <li class="list-group-item">
+              <strong>Joined Date:</strong> {{ selectedinterns?.joineddate | date : 'longDate' }}
+            </li>
+            <li class="list-group-item">
+              <strong>Age:</strong> {{ selectedinterns?.age }}
+            </li>
+            <li class="list-group-item">
+              <strong>Address:</strong> {{ selectedinterns?.address }}
+            </li>
+            <li class="list-group-item">
+              <strong>Skill:</strong> {{ selectedinterns?.skill }}
+            </li>
+          </ul>
+          <div class="mt-4 text-center">
+            <button class="btn btn-secondary me-5" routerLink="/">Go Home</button>
+            <button class="btn btn-secondary ms-5" routerLink="/interns">Go Back</button>
+            <div class="text-end">
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

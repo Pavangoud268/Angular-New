@@ -8,44 +8,49 @@ import { CommonModule } from '@angular/common';
   selector: 'app-show-activity',
   imports: [CommonModule],
   templateUrl: './show-activity.component.html',
-  styleUrl: './show-activity.component.css'
+  styleUrl: './show-activity.component.css',
 })
 export class ShowActivityComponent implements OnInit {
-  serviceActivites = inject(ActivityServiceService)
+  serviceActivites = inject(ActivityServiceService);
   // activity = this.serviceActivites.activites
-  activity! : activity[]
-  activeRoute : ActivatedRoute = inject(ActivatedRoute)
-  activityId! : number;
-  selectedActivity : activity | undefined
-  router : Router = inject(Router)
-  actSub : any;
+  activity!: activity[];
+  activeRoute: ActivatedRoute = inject(ActivatedRoute);
+  activityId!: number;
+  selectedActivity: activity | undefined;
+  router: Router = inject(Router);
+  actSub: any;
 
-  ngOnInit(){
+  ngOnInit() {
     //this.activityId = Number(this.activeRoute.snapshot.params['id'])
     // this.activityId = Number(this.activeRoute.snapshot.paramMap.get('id'))
-    this.activity = this.activeRoute.snapshot.data['course']
-    this.actSub = this.activeRoute.paramMap.subscribe((data)=>{
-      console.log(data.get('id'))
-      this.activityId = Number(data.get('id'))
-      this.selectedActivity = this.activity.find((act) => act.id === this.activityId)
-    })
+    this.activity = this.activeRoute.snapshot.data['course'];
+    this.actSub = this.activeRoute.paramMap.subscribe((data) => {
+      console.log(data.get('id'));
+      this.activityId = Number(data.get('id'));
+      this.selectedActivity = this.activity.find(
+        (act) => act.id === this.activityId
+      );
+    });
   }
 
-  onCommitmentChange(){
+  onCommitmentChange() {
     if (this.selectedActivity) {
       this.selectedActivity.commitment = !this.selectedActivity.commitment;
     }
   }
 
-  toNext(){
-     if(this.activityId < 4){
-      this.router.navigate(['Service',(this.activityId+1)])
+  toNext() {
+    if (this.activityId < 4) {
+      this.router.navigate(['Service', this.activityId + 1]);
     }
   }
-  toPrevious(){
-    if(this.activityId > 1){
-      this.router.navigate(['Service',(this.activityId-1)])
+  toPrevious() {
+    if (this.activityId > 1) {
+      this.router.navigate(['Service', this.activityId - 1]);
     }
+  }
+
+  ngOnDestroy() {
+    console.log('destroyed');
   }
 }
-

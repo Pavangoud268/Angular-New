@@ -1,18 +1,81 @@
-<div class="container mt-5" style="max-width: 600px;">
-  <form class="p-4 border rounded shadow-sm bg-light" [formGroup]="reactiveForm" (ngSubmit)="onSubmit()">
+<div class="container mt-5 d-flex justify-content-center">
+  <form
+    class="form-wrapper p-4 border rounded shadow-sm bg-light w-100"
+    style="max-width: 600px"
+    [formGroup]="reactiveForm"
+    (ngSubmit)="onSubmit()"
+  >
     <div class="mb-3">
-      <input type="text" formControlName="name" class="form-control" placeholder="Enter Name" />
+      <input
+        type="text"
+        formControlName="name"
+        class="form-control"
+        placeholder="Enter Name"
+      />
     </div>
+
     <div class="mb-3">
-      <input type="number" formControlName="age" class="form-control" placeholder="Enter Age" />
+      <input
+        type="number"
+        formControlName="age"
+        class="form-control"
+        placeholder="Enter Age"
+      />
     </div>
+
     <div class="mb-3">
-      <input type="text" formControlName="address" class="form-control" placeholder="Enter Address" />
+      <input
+        type="date"
+        formControlName="joineddate"
+        class="form-control"
+        placeholder="Enter Joined Date"
+      />
     </div>
+
     <div class="mb-3">
-      <input type="text" formControlName="skill" class="form-control" placeholder="Enter Skill" />
+      <input
+        type="text"
+        formControlName="address"
+        class="form-control"
+        placeholder="Enter Address"
+      />
     </div>
-    <button class="btn btn-primary" type="submit" [disabled]="reactiveForm.invalid"
-      >Submit</button>
+
+    <div class="mb-3">
+      <input
+        type="text"
+        formControlName="skill"
+        class="form-control"
+        placeholder="Enter Skill"
+      />
+    </div>
+
+    <div class="d-flex justify-content-between align-items-center mt-4">
+      <button class="btn btn-secondary" type="button" routerLink="/interns">
+        Go Back
+      </button>
+      <div class="d-flex gap-3">
+        <ng-container *ngIf="!updateButton; else updatebtn">
+          <button
+            class="btn btn-primary"
+            type="submit"
+            [disabled]="reactiveForm.invalid"
+          >
+            Submit
+          </button>
+        </ng-container>
+
+        <ng-template #updatebtn>
+          <button
+            class="btn btn-warning"
+            type="button"
+            (click)="updateApiData()"
+            [disabled]="reactiveForm.pristine"
+          >
+            Update
+          </button>
+        </ng-template>
+      </div>
+    </div>
   </form>
 </div>

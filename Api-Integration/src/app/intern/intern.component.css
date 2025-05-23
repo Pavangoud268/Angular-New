@@ -1,0 +1,29 @@
+.intern-detail-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  transition: box-shadow 0.3s ease;
+}
+
+.intern-detail-card:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.list-group-item {
+  font-size: 1.1rem;
+  padding: 0.75rem 1.25rem;
+  background-color: #f8f9fa;
+  border: none;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.list-group-item:last-child {
+  border-bottom: none;
+}
+
+.btn-secondary {
+  transition: transform 0.2s ease;
+}
+
+.btn-secondary:hover {
+  transform: scale(1.05);
+}

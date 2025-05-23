@@ -7,7 +7,7 @@ import { SubscribeComponent } from '../subscribe/subscribe.component';
 import { AboutComponent } from "../about/about.component";
 
 @Component({
-  imports: [RouterLink, CommonModule, ExerciseComponent, SubscribeComponent, AboutComponent],
+  imports: [ CommonModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
