@@ -12,7 +12,7 @@ import { CommonModule } from '@angular/common';
 })
 export class InternComponent {
 
-  #activeRoute : ActivatedRoute = inject(ActivatedRoute)
+  activeRoute : ActivatedRoute = inject(ActivatedRoute)
 
   internId! : number
 
@@ -21,7 +21,7 @@ export class InternComponent {
   selectedinterns! : any
 
   ngOnInit(){
- this.#activeRoute.paramMap.subscribe((data)=>{
+ this.activeRoute.paramMap.subscribe((data)=>{
       this.internId = Number(data.get('id'))
     })
 

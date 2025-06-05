@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormComponent } from "../form/form.component";
 import { ApiCallsService } from '../Service/api-calls.service';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
@@ -12,36 +12,41 @@ import { Observable } from 'rxjs';
   templateUrl: './post.component.html',
   styleUrl: './post.component.css'
 })
-export class PostComponent {
-  apiService : ApiCallsService = inject(ApiCallsService)
-  receivedData? : apiData[];
-  router : Router = inject(Router)
-  activeRoute : ActivatedRoute = inject(ActivatedRoute)
+export class PostComponent implements OnInit {
+  #apiService : ApiCallsService = inject(ApiCallsService);
+  protected receivedData? : apiData[];
+  #router : Router = inject(Router);
+  #activeRoute : ActivatedRoute = inject(ActivatedRoute);
 
   ngOnInit(){
     // this.apiService.Getdata.subscribe((data) => {
     //   this.receivedData = data})
-    this.receivedData = this.activeRoute.snapshot.data['data']
+    // this.receivedData = this.activeRoute.snapshot.data['data']
+    this.callApi();
   }
   protected callApi(){
-      this.apiService.Getdata().pipe().subscribe(res=>{
+      this.#apiService.Getdata().pipe().subscribe(res=>{
         console.log(res);
+        this.receivedData = res;
       })
     }
-  deleteUser(id : number){
+  protected deleteUser(id : number){
   const confirmed = confirm("Are you sure you want to delete the Intern Record?");
 
   if (confirmed) {
-    this.apiService.deleteData(id).subscribe(() => {
-      this.callApi();
+    this.#apiService.deleteData(id).subscribe({
+      next : ()=>{
+        console.log('abc');
+        this.callApi();
+      }
     });
   }
   }
-  sendData(data : any){
-    this.router.navigate(['form'],{ state: { formData: data } })
+  protected sendData(data : any){
+    this.#router.navigate(['form'],{ state: { formData: data } });
   }
-  toIntern(id : number){
-    console.log('jhbhjcd')
-    this.router.navigate(['interns',id])
+  protected toIntern(id : number){
+    console.log('jhbhjcd');
+    this.#router.navigate(['interns',id]);
   }
 }

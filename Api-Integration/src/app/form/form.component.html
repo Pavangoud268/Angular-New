@@ -12,6 +12,7 @@
         class="form-control"
         placeholder="Enter Name"
       />
+      <small *ngIf="reactiveForm.get('name')?.invalid && reactiveForm.get('name')?.touched">*Required</small>
     </div>
 
     <div class="mb-3">

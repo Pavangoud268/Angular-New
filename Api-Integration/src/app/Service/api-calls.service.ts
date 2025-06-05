@@ -13,11 +13,11 @@ export class ApiCallsService {
 
   formData = new Observable()
 
-   Getdata() :Observable <apiData>{
-    return this.http.get<apiData>('https://682cbfb74fae18894753bb36.mockapi.io/demo/details')
+   Getdata() :Observable <apiData[]>{
+    return this.http.get<apiData[]>('https://682cbfb74fae18894753bb36.mockapi.io/demo/details')
   }
 
-  postData(data : any){
+  postData(data : apiData){
     return this.http.post('https://682cbfb74fae18894753bb36.mockapi.io/demo/details',data)
   }
 
@@ -35,7 +35,7 @@ export class ApiCallsService {
 
 }
 
-export const data = ()=>{
+export const data = ():Observable <apiData[]>=>{
   const http = inject(HttpClient)
-  return http.get('https://682cbfb74fae18894753bb36.mockapi.io/demo/details')
+  return http.get<apiData[]>('https://682cbfb74fae18894753bb36.mockapi.io/demo/details')
 }
