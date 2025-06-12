@@ -17,13 +17,14 @@ export class AppComponent implements OnInit{
 
   ngOnInit(){
     this.reactiveForm = new FormGroup({
-      firstname : new FormControl(null,[Validators.required,CustomValidators.noSpaceAllowed]),
-      lastName : new FormControl(null,[Validators.required,CustomValidators.noSpaceAllowed]),
+      firstname : new FormControl(null,Validators.required),
+      lastName : new FormControl(null,Validators.required),
       userName : new FormControl(null),
       email : new FormControl('',[Validators.required,Validators.email]),
       age : new FormControl(null),
       dob : new FormControl(null,Validators.required),
       sex : new FormControl('male'),
+      video : new FormControl('',[Validators.required,CustomValidators.videoFormat]),
       address : new FormGroup({
         country : new FormControl('',Validators.required),
         city : new FormControl('',Validators.required),
@@ -42,15 +43,15 @@ export class AppComponent implements OnInit{
     },Validators.required)
 
     // this.reactiveForm.get('firstname')?.valueChanges.subscribe((val)=> console.log(val))
-    //this.reactiveForm.valueChanges.subscribe((val)=> console.log(val))
+    // this.reactiveForm.valueChanges.subscribe((val)=> console.log(val))
   }
 
   onSubmit(){
-    // console.log(this.reactiveForm)
+    console.log(this.reactiveForm)
     // console.log(this.reactiveForm.value.firstname)
     this.formdata = this.reactiveForm.value
     console.log(this.formdata)
-    this.reactiveForm.reset()
+    // this.reactiveForm.reset()
   }
   get controls(){
     return ((this.reactiveForm.get('languages')) as FormArray).controls
@@ -79,7 +80,7 @@ export class AppComponent implements OnInit{
     this.arraySkills.removeAt(i)
   }
   genUserName(){
-    const firstName = this.reactiveForm.get('firstname')?.value
+    const firstName = this.reactiveForm.controls['firstname'].value
     const lastName = this.reactiveForm.get('lastName')?.value
     const age = this.reactiveForm.get('age')?.value
     const userName = firstName + lastName + age;
@@ -94,6 +95,12 @@ export class AppComponent implements OnInit{
     exp.at(0).patchValue({
       exp : 3
     })
+
+  }
+
+  get firstNmae(){
+
+    return this.reactiveForm.get('firstname')?.invalid && this.reactiveForm.get('firstname')?.touched
 
   }
 

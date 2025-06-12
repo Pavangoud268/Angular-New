@@ -25,7 +25,7 @@ export class PostComponent implements OnInit {
     this.callApi();
   }
   protected callApi(){
-      this.#apiService.Getdata().pipe().subscribe(res=>{
+      this.#apiService.Getdata().subscribe(res=>{
         console.log(res);
         this.receivedData = res;
       })
@@ -42,8 +42,8 @@ export class PostComponent implements OnInit {
     });
   }
   }
-  protected sendData(data : any){
-    this.#router.navigate(['form'],{ state: { formData: data } });
+  protected sendData(id : number){
+    this.#router.navigate(['form',id]);
   }
   protected toIntern(id : number){
     console.log('jhbhjcd');

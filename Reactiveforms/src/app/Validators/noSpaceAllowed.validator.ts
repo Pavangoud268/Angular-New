@@ -1,8 +1,8 @@
 import { AbstractControl, FormControl } from "@angular/forms";
 
 export class CustomValidators{
-  static noSpaceAllowed(control : AbstractControl){
-    if(control.value != null && control.value.indexOf(' ') != -1){
+  static videoFormat(control : AbstractControl){
+    if(!(control.value.includes('.mp4'))){
       return {noSpaceAllowed : true}
     }
     return null

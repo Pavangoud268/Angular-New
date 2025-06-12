@@ -1,13 +1,15 @@
 <div class="m-2 justify-content-center">
   <h1 class="text-danger">{{name}}</h1>
-  <h3 class="text-primary">Movies</h3>
+  <h3>Movies</h3>
   <input [(ngModel)]="newMve"  type="text">
   <button class="ms-2" (click)="addMve(newMve)">Add Movie</button>
   <div class="mt-2"></div>
   <ul class="d-flex gap-2 " *ngFor="let mve of movies;let i = index">
     <li>{{mve.movie}}</li>
-    <button (click) = "deleteMve(i)">Delete</button>
+    <button nghighLight (click) = "deleteMve(i)">Delete</button>
     <input [value]="mve.movie" *ngIf="mve.inp" (input)="updateMve($event,i)" >
     <button (click) = inputShow(i)>Update</button>
   </ul>
+  <input type="text" [(ngModel)]="color">
+  <p appHost [appHost]="color" tabindex="0">Dynamic Color Change</p>
 </div>

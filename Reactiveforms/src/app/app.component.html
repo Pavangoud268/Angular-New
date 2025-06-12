@@ -4,7 +4,7 @@
     <!-- First Name -->
     <div class="mb-3">
       <input type="text" formControlName="firstname" class="form-control" placeholder="Enter First Name" />
-      <small class="text-danger" *ngIf="reactiveForm.get('firstname')?.invalid && reactiveForm.get('firstname')?.touched">
+      <small class="text-danger" *ngIf="reactiveForm.get('firstName')?.invalid && reactiveForm.get('firstName')?.touched">
         * Required
       </small>
     </div>
@@ -35,6 +35,14 @@
       <input type="date" formControlName="dob" class="form-control" />
     </div>
 
+    <!-- Video -->
+    <div class="mb-3">
+      <input type="file" formControlName="video" class="form-control" />
+      <small class="text-danger" *ngIf=" reactiveForm.get('address')?.touched">
+          *Some Required field is missing
+        </small>
+    </div>
+
     <!-- Sex -->
     <div class="mb-3">
       <label class="form-label d-block">Sex:</label>
@@ -62,14 +70,17 @@
 
       <div class="mb-3">
         <input type="text" formControlName="city" class="form-control" placeholder="Enter City" />
-        <small class="text-danger" *ngIf="reactiveForm.get('address.city')?.invalid && reactiveForm.get('address.city')?.touched">
+        <!-- <small class="text-danger" *ngIf="reactiveForm.get('address.city')?.invalid && reactiveForm.get('address.city')?.touched">
           * Required
-        </small>
+        </small> -->
       </div>
 
       <div class="mb-3">
         <input type="text" formControlName="pincode" class="form-control" placeholder="Enter Pincode" />
       </div>
+      <small class="text-danger" *ngIf="reactiveForm.get('address')?.invalid && reactiveForm.get('address')?.touched">
+          *Some Required field is missing
+        </small>
     </div>
 
     <!-- Languages FormArray -->

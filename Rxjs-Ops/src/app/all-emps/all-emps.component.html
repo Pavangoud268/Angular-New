@@ -1,0 +1,12 @@
+<div>
+  <h1>Ariqt Employees</h1>
+  @for (emp of empsData; track emp) {
+    <!-- <h3>{{emp.name}}</h3>
+    <h3>{{emp.email}}</h3> -->
+    <h1>{{emp}}</h1>
+  }
+  <!-- <div *ngFor="let name of ofObs$ | async">
+    <h1>{{name}}</h1>
+  </div> -->
+  <button (click)="consoleData()">Data</button>
+</div>

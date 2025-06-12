@@ -11,5 +11,8 @@ export const routes: Routes = [
   {path: 'interns',children:[
     {path:':id',component:InternComponent,title:'Intern'}
   ]},
-  {path:'form',component: FormComponent,title:'Add New Intern'}
+  {path:'form',component: FormComponent,title:'Add New Intern'},
+  {path:'form',children:[
+    {path:':ide',component:FormComponent,title:'Edit'}
+  ]}
 ];

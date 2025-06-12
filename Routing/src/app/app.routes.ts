@@ -22,8 +22,8 @@ export const routes: Routes = [
   {path:'Service',component:ContactComponent,title:'Service',resolve:{courses : resolve}},
   // {path:'Service/:id',component:ShowActivityComponent},
   {path:'Service',canActivateChild:[CanActivate],children:[
+    {path:':id',component:ShowActivityComponent,title:'Service',resolve:{course : resolve}},
     {path:'User',component:UserComponent},
-    {path:':id',component:ShowActivityComponent,title:'Service',resolve:{course : resolve}}
 
   ]},
   {path:'Login',component:LoginComponent,title:'Login'},

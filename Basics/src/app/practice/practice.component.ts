@@ -1,14 +1,17 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { SetBackground } from '../Directives/highlighter.directive';
+import { HostEx } from '../Directives/hostlistner.directive';
 
 @Component({
   selector: 'practice',
-  imports: [CommonModule,FormsModule],
+  imports: [CommonModule,FormsModule,SetBackground,HostEx],
   templateUrl: './practice.component.html',
   styleUrl: './practice.component.css'
 })
 export class PracticeComponent {
+  color : string = ''
   name : string = 'Prabhas Raju'
   movies = [{movie:'Salaar',inp : false},
     {movie:'Bahubali-2',inp : false},
