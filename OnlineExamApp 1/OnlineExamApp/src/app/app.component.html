@@ -1,0 +1,169 @@
+<mat-toolbar
+  class="bg-white"
+  style="
+    -webkit-box-shadow: 0 8px 6px -6px #999;
+    -moz-box-shadow: 0 8px 6px -6px #999;
+    box-shadow: 0 8px 6px -6px #999;
+  "
+>
+  <div class="bt-content text-left">
+    <a href="https://www.ariqt.com/"
+      ><img
+        class="logo"
+        style="height: 42px; width: auto"
+        src="https://onlineexamresumes.blob.core.windows.net/interviewcandidates/ariqtlogo.png"
+        alt="Logo"
+    /></a>
+  </div>
+  <div class="row" *ngIf="isAdmin">
+    <div class="col-md-12 col-sm-12 col-lg-12">
+      <nav class="navbar navbar-expand-lg navbar-light bg-white">
+        <!-- <a class="navbar-brand" href=""><h1 style="color: rgb(23, 42, 206);">Admin Portal</h1></a> -->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarText"
+          aria-controls="navbarText"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse bg-white" id="navbarText">
+          <!-- <a href="https://www.ariqt.com/"><img class="logo" style="height: 42px; width: auto;"
+              src="https://www.ariqt.com/wp-content/uploads/2021/05/logo2.png" alt="Logo"></a> -->
+          <ul class="navbar-nav mr-auto bg-white">
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/users"
+                ><i class="fa fa-fw fa-user"></i>&nbsp;Candidates
+                <span class="sr-only">(current)</span></a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                style="cursor: pointer"
+                routerLink="/questions"
+                ><i class="fa fa-fw fa-question-circle"></i>&nbsp;Questions</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                style="cursor: pointer"
+                routerLink="/candidate-profile"
+                ><i class="fa fa-fw fa-user"></i>&nbsp;Profile</a
+              >
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </div>
+  <div class="row" *ngIf="isDeveloper">
+    <div class="col-md-12 col-sm-12 col-lg-12">
+      <nav class="navbar navbar-expand-lg navbar-light bg-white">
+        <!-- <a class="navbar-brand" href=""><h1 style="color: rgb(23, 42, 206);">Admin Portal</h1></a> -->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarText"
+          aria-controls="navbarText"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse bg-white" id="navbarText">
+          <!-- <a href="https://www.ariqt.com/"><img class="logo" style="height: 42px; width: auto;"
+              src="https://www.ariqt.com/wp-content/uploads/2021/05/logo2.png" alt="Logo"></a> -->
+          <ul class="navbar-nav mr-auto bg-white">
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                style="cursor: pointer"
+                routerLink="/questions"
+                ><i class="fa fa-fw fa-question-circle"></i>&nbsp;Questions</a
+              >
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </div>
+
+  <!-- <a mat-button [routerLink]="['profile']">Profile</a> -->
+  <app-menu-bar class="bg-white" *ngIf="isAdmin"></app-menu-bar>
+  <div class="toolbar-spacer"></div>
+  <div *ngIf="!isMenu">
+    <button mat-raised-button *ngIf="!loggedIn" (click)="login()">Login</button>
+    <!-- <app-profile *ngIf="loggedIn"></app-profile> -->
+
+    <!-- dropdown start -->
+    <div class="dropdown" *ngIf="loggedIn">
+      <button
+        class="btn btn-default dropdown-toggle"
+        type="button"
+        id="menu1"
+        data-toggle="dropdown"
+      >
+        <img
+          src="../../assets/profileicon.png"
+          alt="User's Profile Picture"
+          class="rounded-circle img-fluid profile-picture"
+          style="width: 50px; margin-left: 10px"
+        />
+      </button>
+      <ul class="dropdown-menu" style="margin-right: 75px">
+        <li>
+          <a style="color: blue" href="" class="nav-link">
+            {{ this.getusername }}
+          </a>
+        </li>
+        <li>
+          <a style="color: red" href="" class="nav-link" (click)="logout()">
+            Logout
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- dropdown end -->
+  </div>
+</mat-toolbar>
+
+<div *ngIf="!loggedIn">
+  <div *ngIf="isCandidate">
+    <app-login-user></app-login-user>
+  </div>
+</div>
+<div *ngIf="!loggedIn">
+  <div *ngIf="isQuiz">
+    <app-quiz></app-quiz>
+  </div>
+</div>
+<div *ngIf="!loggedIn">
+  <div *ngIf="isInterviewEvaluationForm">
+    <app-interview-evaluation-form></app-interview-evaluation-form>
+  </div>
+</div>
+<div *ngIf="!loggedIn">
+  <div *ngIf="isNewCandidate">
+    <app-new-candidate></app-new-candidate>
+  </div>
+</div>
+
+<div *ngIf="loggedIn">
+  <div *ngIf="isAuthorized" class="container">
+    <!--This is to avoid reload during acquireTokenSilent() because of hidden iframe -->
+    <router-outlet *ngIf="isAdmin"></router-outlet>
+    <app-questions *ngIf="isDeveloper"></app-questions>
+  </div>
+</div>
+<div *ngIf="loggedIn">
+  <div *ngIf="!isAuthorized">
+    <app-unauthorized></app-unauthorized>
+  </div>
+</div>

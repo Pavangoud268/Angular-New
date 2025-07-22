@@ -1,0 +1,23 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="nav navbar-nav ml-auto">
+        <li class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+            <img src="https://onlineexamresumes.blob.core.windows.net/interviewcandidates/ariqtlogo.png" width="40" height="40" class="rounded-circle">
+          </a>
+          <div class="dropdown-menu dropdown-menu-right">
+            <label class="dropdown-item disabled text-dark">{{account.name}}</label>
+            <!-- <a routerLink="/profile" class="dropdown-item">Profile</a> -->
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" (click)="logout()">Logout</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>

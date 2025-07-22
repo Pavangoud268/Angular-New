@@ -1,4 +1,5 @@
-import { Component, EventEmitter, inject, Input, OnDestroy, OnInit, Output } from '@angular/core';
+
+ import { Component, EventEmitter, inject, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { DataService } from '../Service/data.service';
 import { Observable, Subject, Subscription } from 'rxjs';
@@ -31,6 +32,8 @@ export class FormComponent implements OnInit,OnDestroy {
 
   protected activatedRoute : ActivatedRoute = inject(ActivatedRoute)
 
+  protected id! : number
+
   ngOnInit(){
     this.reactiveForm = this.LoginForm.group({
       name : ['',Validators.required],
@@ -46,10 +49,10 @@ export class FormComponent implements OnInit,OnDestroy {
     //   this.reactiveForm.patchValue(this.#data);
     //   this.updateButton = ! this.updateButton;
     // }
-    const id = Number(this.activatedRoute.snapshot.paramMap.get('ide'))
-    console.log(id)
-    if(id){
-      this.#apiService.getSingleData(id).subscribe((data)=>{
+     this.id = Number(this.activatedRoute.snapshot.paramMap.get('ide'))
+    console.log(this.id)
+    if(this.id){
+      this.#apiService.getSingleData(this.id).subscribe((data)=>{
         this.reactiveForm.patchValue(data);
         this.updateButton = ! this.updateButton;
       })
@@ -73,8 +76,8 @@ export class FormComponent implements OnInit,OnDestroy {
 
   protected updateApiData(){
     console.log(this.reactiveForm.value);
-    const id : number = this.#data.id;
-    this.#apiService.putData(id,this.reactiveForm.value).subscribe({
+    //const id : number = this.#data.id;
+    this.#apiService.putData(this.id,this.reactiveForm.value).subscribe({
       next:()=>{
         this.#router.navigate(['interns']);
       }

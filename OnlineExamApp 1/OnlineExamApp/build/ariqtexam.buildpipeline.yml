@@ -1,0 +1,39 @@
+trigger:
+    batch: true
+    branches:
+        include:
+        - master
+        - Development
+        - feature/*
+    paths:
+        include:
+            - /AriqtExam
+pool:
+  name: Azure Pipelines
+  vmImage: vs2017-win2016
+  demands: npm
+
+steps:
+- task: Npm@1
+  displayName: 'npm install'
+  inputs:
+    workingDir: AriqtExam
+    verbose: false
+
+- task: Npm@1
+  displayName: 'npm run build prod'
+  inputs:
+    command: custom
+    workingDir: AriqtExam
+    verbose: true
+    customCommand: 'run build'
+
+- task: ArchiveFiles@2
+  displayName: 'Archive AriqtExam'
+  inputs:
+    rootFolderOrFile: AriqtExam/dist
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact: drop'
+  inputs:
+    artifactName: drop

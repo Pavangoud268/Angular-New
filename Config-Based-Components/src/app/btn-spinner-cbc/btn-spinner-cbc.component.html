@@ -1,0 +1,10 @@
+<div>
+  <button
+    [style.background]="styleConfig.color"
+    [style.fontSize]="sizeMap[styleConfig.size]"
+    (click)="styleConfig.action()"
+  >
+  <span [class]="classConfig"></span>
+    {{ styleConfig.text }}
+  </button>
+</div>

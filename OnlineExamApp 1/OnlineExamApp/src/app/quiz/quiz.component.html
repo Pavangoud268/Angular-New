@@ -1,0 +1,81 @@
+<br/>
+
+<div id="quiz" *ngIf="userdata.examStatus==2" style="width: 70%;margin:auto;font-family: 'Times New Roman', Times, serif;">
+  <br/>
+
+  <div *ngIf="mode=='quiz' && quiz">
+    <div *ngFor="let question of filteredQuestions;">
+      <div class="badge badge-info">Question {{pager.index + 1}} of {{pager.count}}.</div>
+      <div *ngIf="config.duration" class="badge badge-info float-right">Time: {{ellapsedTime}} / {{duration}}</div>
+      <h3 class="font-weight-normal">{{pager.index + 1}}.
+        <span [innerHTML]="question.question"></span>
+      </h3>
+      <hr/>
+      <div class="row text-left options" style="font-size: 18px;">
+       
+        <div class="col-6" *ngFor="let option of question.choices">
+          <div class="option" *ngIf="question.questionType==1">
+            <label class="font-weight-normal" [attr.for]="option.id">
+              <input id="{{option.choiceId}}" type="checkbox" [(ngModel)]="option.selected" (change)="onSelect(question, option);" /> {{option.option}}
+            </label>
+          </div>
+        
+      </div>
+    
+        <div class="col-12" *ngIf="question.questionType==3">
+          <textarea class="col-12 text-light bg-dark p-4" id="{{question.questionId}}" rows="20" value="{{code}}" (change)="ontext(question);">
+            
+          </textarea>
+        </div>
+      </div>
+    </div>
+    <hr />
+    <div class="text-center">
+      <button class="btn btn-default" *ngIf="config.allowBack" (click)="goTo(0);">First</button>
+      <button class="btn btn-default" *ngIf="config.allowBack" (click)="goTo(pager.index - 1);">Prev</button>
+      <button class="btn btn-primary" (click)="goTo(pager.index + 1);">Next</button>
+      <button class="btn btn-default" *ngIf="config.allowBack" (click)="goTo(pager.count - 1);">Last</button>
+      <!--<pagination *ngIf="config.showPager" direction-links="false" total-items="totalItems" items-per-page="itemsPerPage" ng-model="currentPage" ng-change="pageChanged()"></pagination>-->
+    </div>
+  </div>
+  <div class="row text-center" *ngIf="mode=='review'">
+    
+    <div class="col-4 cursor-pointer" *ngFor="let question of quiz.questions; let index = index;">
+      <div (click)="goTo(index)" class="p-3 mb-2 {{ isAnswered(question) == 'Answered'? 'bg-info': 'bg-warning' }}">{{index + 1}}. {{ isAnswered(question) }}</div>
+    </div>
+  </div>
+  <div class="result" *ngIf="mode=='result'">
+    
+    <!-- <div *ngFor="let question of quiz.questions; let index = index">
+      <div class="result-question">
+        <h5>{{index + 1}}. {{question.question}}</h5>
+        <div class="row">
+          <div class="col-6" *ngFor="let Option of question.choices">
+            <input id="{{Option.choiceId}}" type="checkbox" disabled="disabled" [(ngModel)]="Option.selected" /> {{Option.option}}
+          </div>
+        </div>
+        <div class="p-1 m-2 alert {{ isCorrect(question) == 'correct'? 'alert-success': 'alert-danger'}}">Your answer is {{isCorrect(question)}}.</div>
+      </div>
+    </div> -->
+    <h4 class="alert alert-info text-center">Your test has been successfully Submitted.</h4>
+  </div>
+  <hr />
+  <br/>
+  <div *ngIf="mode!='result'" style="right: 200px;position:absolute;">
+    <!-- <button class="btn btn-warning" (click)="mode = 'quiz'">Quiz</button> -->
+    <button class="btn btn-info" (click)="mode = 'review'">Review</button>&nbsp;&nbsp;
+    <button class="btn btn-primary" (click)="onSubmit();">Submit</button>
+  </div>
+</div>
+<div *ngIf="userdata.examStatus==3">
+  <div class="result">
+    
+    <h4 class="alert alert-info text-center">Your exam has been Completed. We will get back to you soon</h4>
+  </div>
+</div>
+<div *ngIf="userdata.examStatus==4">
+  <div class="result">
+    
+    <h4 class="alert alert-info text-center">Your eaxn will be Expired. You will Contact Ariqt For any Queries</h4>
+  </div>
+</div>

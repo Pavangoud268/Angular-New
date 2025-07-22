@@ -1,0 +1,122 @@
+<br>
+<div class="card">
+  <div class="bg-white bg-auto">
+    <div class="text-center" >
+      <h4 style="background-color:gray ;">Registration Form</h4>
+<br>
+    </div>
+    <br>
+<div class="col-md-10 d-flex justify-content-center">
+  <div class="container">
+    <form class="form-horizontal" role="form" autocomplete="off" >
+      <div class="form-row">
+        <div class="form-group col-md-4">
+          <label for="Name">Name</label>
+          <input type="text" id="txtName" formControlName="name" placeholder="Name" class="form-control">
+
+        </div>
+        <div class="form-group col-md-4">
+          <label for="MobileNumber" class="control-label">MobileNo</label>
+          <input type="text" id="txtmob" maxlength="10" placeholder="Mobile Number" formControlName="mob"
+             class="form-control">
+        </div>
+        <div class="form-group col-md-4">
+          <label for="email" class="control-label">Email</label>
+          <input type="email" id="txtemail" placeholder="Email" class="form-control" formControlName="email"
+            name="email">
+
+        </div>
+        <div class="form-group col-md-4">
+          <label for="technology" class="control-label">Qualification</label>
+          <select name="source" id="ddlsource" class="form-control">
+            <option value="BSC">Bsc</option>
+            <option value="MSC">Msc</option>
+            <option value="MCA">MCA</option>
+            <option value="BTECH">BTech</option>
+          </select>
+        </div>
+
+          <div class="form-group col-md-4">
+            <label for="technology" class="control-label">Technology</label>
+            <select name="technology" id="technology" class="form-control" (change)="onSelect($event)">
+              <!-- <option value="1">.Net Developer</option>
+              <option value="2">Angular Developer</option>
+              <option value="3">Fullstack Developer</option>
+              <option value="4">Rust Developer</option>
+              <option value="5">PHP Developer</option>
+              <option value="6">Python Developer</option>
+              <option value="7">VueJs</option>
+              <option value="8">Tester</option>
+              <option value="9">Scrum Master</option>
+              <option value="10">Devops Engineer</option>
+              <option value="11">Agu</option> -->
+              <option value="12">Developer Intern</option>
+              <option value="13">QA Intern</option>
+              <option value="14">AI/ML Intern</option>
+              <option value="15">Data intern</option>
+            </select>
+          </div>
+          <div class="form-group col-md-4">
+            <label for="experience" class="control-label">Experience</label>
+            <input type="text" id="txtexperience" placeholder="experience" formControlName="exp"
+
+              class="form-control">
+
+          </div>
+
+          <div class="form-group col-md-4">
+            <label for="uploadresume" class="control-label">Upload Resume</label>
+
+            <input type="file" id="myFile" name="filename" class="form-control" formControlName="uploadresume"
+              [ngClass]="{ 'is-invalid': submitted && f.uploadresume.errors }"
+              (change)="onSelectFile($event.target.files)">
+            <div *ngIf="submitted && f.uploadresume.errors" class="invalid-feedback">
+              <div *ngIf="f.uploadresume.errors.required">Resume is required</div>
+            </div>
+          </div>
+
+          <div class="form-group col-md-4">
+            <label for="uploadresume" class="control-label">Upload Intro Video</label>
+
+            <input type="file" id="myVideoFile" name="videoname" class="form-control" formControlName="uploadvideo"
+              [ngClass]="{ 'is-invalid': submitted && f.uploadvideo.errors }"
+              (change)="onSelectVideo($event.target.files)">
+            <div *ngIf="submitted && f.uploadvideo.errors" class="invalid-feedback">
+              <div *ngIf="f.uploadvideo.errors.required">Resume is required</div>
+            </div>
+          </div>
+          <br>
+
+        <!-- <div class="form-group col-md-4">
+          <label for="Name">Communication Rating (Out Of 10)</label>
+          <input type="text" id="txtCommunication" formControlName="name" placeholder="Rating" class="form-control">
+
+        </div>
+        <div class="form-group col-md-4">
+          <label for="Name">Logical Rating (Out Of 10)</label>
+          <input type="text" id="txtLogical" formControlName="name" placeholder="Rating" class="form-control">
+
+        </div>
+        <div class="form-group col-md-4">
+          <label for="Name">Coding Rating (Out Of 10)</label>
+          <input type="text" id="txtCoding" formControlName="name" placeholder="Rating" class="form-control">
+
+        </div> -->
+      </div>
+      <br>
+      <div class="form-group">
+        <div class="row">
+          <div class="col-md-9">
+          </div>
+          <div class="col-md-3" style="right: -35px;position: absolute;margin-top: -35px;">
+            <button type="submit" mat-raised-button color="primary" (click)="postdata()">
+              Submit
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+    </div>
+</div>

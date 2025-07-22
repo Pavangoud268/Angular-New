@@ -1,0 +1,236 @@
+<br />
+<div class="row">
+  <div class="col-md-12 col-sm-12 col-lg-12" *ngIf="displayTable">
+    <br /><br />
+    <div class="row">
+      <div class="form-group col-md-4">
+        <input type="text" class="form-control" id="search" style="margin-top: 2px;" [(ngModel)]="userName" [(ngModel)]="mobileNo"
+          [(ngModel)]="email" [(ngModel)]="experience" [(ngModel)]="createdDate" (input)="Search()" autocomplete="off" placeholder="Search here"
+          name="search">
+         
+      </div>
+      <div class="form-group col-md-8">
+        <div class="row">
+          <div class="col-md-4">
+            <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize"
+              (pageChange)="refreshCountries()">
+            </ngb-pagination>
+          </div>
+          <div class="col-md-2"></div>
+          <div class="col-md-3">
+            <select class="custom-select" style="width: auto" [(ngModel)]="pageSize"
+              (ngModelChange)="refreshCountries()">
+              <option [ngValue]="15">15 Records</option>
+              <option [ngValue]="30">30 Records</option>
+              <option [ngValue]="45">45 Records</option>
+              <option [ngValue]="60">60 Records</option>
+              <option [ngValue]="75">75 Records</option>
+              <option [ngValue]="100">100 Records</option>
+            </select>
+          </div>
+          <div class="col-md-3">
+            <button type="submit" (click)="addprofile(profile)" class="btn btn-primary col-md-12"><i
+                class="fa fa-fw fa-plus"></i>&nbsp;Add</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row" style="margin-top: -40px;margin-left: -40px;">
+      <div class="col-md-12">
+        <br />
+        <table class="table table-hover table-bordered" style="border: 1px solid black;">
+          <thead>
+            <tr style="background-color:#4c78d9;font-weight: bold;text-align: center;size: 2ch;">
+
+              <th
+                style="color: white;cursor:pointer;font-weight: 100;font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;"
+                scope="col">Name</th>
+              <th
+                style="color: white;cursor:pointer;font-weight: 100;font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;"
+                scope="col">Contact No</th>
+                <th
+                style="color: white;cursor:pointer;font-weight: 100;font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;"
+                scope="col">Technology</th>
+              <th
+                style="color: white;cursor:pointer;font-weight: 100;font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;"
+                scope="col">Experiance</th>
+                <th
+                style="color: white;cursor:pointer;font-weight: 100;font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;"
+                scope="col">CreatedDate</th>
+                <th
+                style="color: white;cursor:pointer;font-weight: 100;font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;"
+                scope="col">CreatedBy</th>
+              <th
+                style="color: white;cursor:pointer;font-weight: 100;font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;"
+                scope="col">Response</th>
+              <th
+                style="color: white;cursor:pointer;font-weight: 100;font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;"
+                scope="col">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style='cursor:pointer' *ngFor="let row of userTableData2">
+
+              <td>{{ row.userName}}</td>
+              <td>{{ row.mobileNo}}</td>
+              <td *ngIf="row.technology==1">.Net Developer</td>
+              <td *ngIf="row.technology==2">Angular Developer</td>
+              <td>{{ row.experience}}</td>
+              <td class="col-md-2">{{ row.createdDate.split('T')[0]}}</td>
+              <td>{{ row.createdBy}}</td>
+              <td>{{ row.response}}</td>
+                <td class="text-danger">
+                  <i class="fa fa-pencil-square-o" (click)="editprofile(editprofiles,row)" title="Edit"></i>
+                  </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="loading-indicator">
+          <mat-spinner *ngIf="loadspinner" diameter="45"></mat-spinner>
+        <!-- <mat-progress-spinner *ngIf="loadspinner" mode="determinate" value='66' diameter="45"></mat-progress-spinner> -->
+      </div>
+        <div class="d-flex justify-content-between p-2">
+          <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize"
+            (pageChange)="refreshCountries()">
+          </ngb-pagination>
+
+          <select class="custom-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refreshCountries()">
+            <option [ngValue]="30">30 Records</option>
+            <option [ngValue]="45">45 Records</option>
+            <option [ngValue]="60">60 Records</option>
+            <option [ngValue]="75">75 Records</option>
+            <option [ngValue]="100">100 Records</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br />
+  <br />
+ <!-- add profile -->
+  <ng-template #profile let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">
+        Profile
+      </h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">
+          ×
+        </span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <form class="form-horizontal" role="form" autocomplete="off">
+            <div class="form-group">
+    
+              <label style="color: blue;">Name</label>
+              <div class="input-group">
+                <input id="txtname"  class="form-control" formControlName="name"  (keypress)="keyPressAlphaWithSpace($event)"  [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
+                <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                  <div *ngIf="f.name.errors.required">Name is required</div>
+                </div>
+              </div>
+              <br />
+              <label style="color: blue;">MobileNo</label>
+              <div class="input-group">
+                <input id="txtmobile" maxlength="10"  class="form-control" (keypress)="keyPressNumbers($event)">
+                <!-- <div *ngIf="submitted && f.mobile.errors" class="invalid-feedback">
+                  <div *ngIf="f.mobile.errors.required">MobileNo is required</div>
+                </div> -->
+              </div>
+              <br />
+              <label style="color: blue;" class="control-label">Technology</label>
+              <div class="input-group">
+                <select name="technology" id="technology" class="form-control">
+                    <option value="1">.Net Developer</option>
+                    <option value="2">Angular Developer</option>
+                  </select>
+              </div>
+              <br />
+              <label style="color: blue;">Experiance</label>
+              <div class="input-group">
+                <input id="txtExperiance"  class="form-control" (keypress)="keyPressNumbersDecimal($event)">
+                <!-- <div *ngIf="submitted && f.exp.errors" class="invalid-feedback">
+                  <div *ngIf="f.exp.errors.required">Experiance is required</div>
+                </div> -->
+              </div>
+              <br />
+              <label style="color: blue;">Response</label>
+              <div class="input-group">
+                <textarea id="txtResponse" rows="10" cols="100" class="form-control"></textarea>
+                <!-- <div *ngIf="submitted && f.res.errors" class="invalid-feedback">
+                  <div *ngIf="f.res.errors.required">Response is required</div>
+                </div> -->
+              </div>
+            </div>
+          </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-info" (click)="modal.close('Close click')" id="addclose">
+        Cancel
+      </button>&nbsp;&nbsp;
+      <button type="submit" (click)="addProfileData()" mat-raised-button color="primary" [class.spinner]="loading" [disabled]="loading" >
+        Submit
+       </button>
+    </div>
+  </ng-template>
+ <!-- End profile -->
+
+  <!-- update thing -->
+  <ng-template #editprofiles let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">
+        Update Profile
+      </h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">
+          ×
+        </span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <form class="form-horizontal" role="form" autocomplete="off">
+            <div class="form-group">
+    
+              <label for="name" style="color: blue;">Name</label>
+              <div class="input-group">
+                <input id="txtnames"  class="form-control"  (keypress)="keyPressAlphaWithSpace($event)">
+              </div>
+              <br />
+              <label for="mobileNo" style="color: blue;">MobileNo</label>
+              <div class="input-group">
+                <input id="txtmobiles" maxlength="10" class="form-control"  (keypress)="keyPressNumbers($event)">
+              </div>
+              <br />
+              <label for="technology" style="color: blue;" class="control-label">Technology</label>
+              <div class="input-group">
+              <select name="selectedTechnology" id="technologys" class="form-control" [(ngModel)]="selectedTechnology">
+                    <option *ngFor="let technologyType of technologyTypes" [value]="technologyType">{{technologyType}}</option>
+              
+              </select>
+              </div>
+              <br />
+              <label for="exp" style="color: blue;">Experiance</label>
+              <div class="input-group">
+                <input id="txtExperiances"  class="form-control"  (keypress)="keyPressNumbersDecimal($event)">
+              </div>
+              <br />
+              <label for="response" style="color: blue;">Response</label>
+              <div class="input-group">
+                <textarea id="txtResponses" rows="10" cols="100" class="form-control"></textarea>
+              </div>
+            </div>
+          </form>
+    </div>
+    <div class="modal-footer">
+
+      <button type="button" class="btn btn-info" (click)="modal.close('Close click')" id="updateclose">
+        Cancel
+      </button>&nbsp;&nbsp;
+      <button type="submit" mat-raised-button color="primary" (click)="updateProfileData()" [class.spinner]="loading" [disabled]="loading" >
+       Update
+      </button>
+    </div>
+  </ng-template>
+
+  <!--end update thing -->

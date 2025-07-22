@@ -1,0 +1,161 @@
+<br />
+<h4 style="text-align: center;">Add Candidate</h4>
+<br />
+<div class="col-md-10 d-flex justify-content-center">
+  <div class="container">
+    <form class="form-horizontal" role="form" autocomplete="off" [formGroup]="registerForm" (ngSubmit)="postdata()">
+      <div class="form-row">
+        <div class="form-group col-md-4">
+          <label for="Name">Name</label>
+          <input type="text" id="txtName" formControlName="name" placeholder="Name" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.name.errors }" (keypress)="keyPressAlphaWithSpace($event)"
+            autofocus>
+          <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+            <div *ngIf="f.name.errors.required">Name is required</div>
+          </div>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="MobileNumber" class="control-label">MobileNo</label>
+          <input type="text" id="txtmob" maxlength="10" placeholder="Mobile Number" formControlName="mob"
+            [ngClass]="{ 'is-invalid': submitted && f.mob.errors }" class="form-control"
+            (keypress)="keyPressNumbers($event)" autofocus>
+          <div *ngIf="submitted && f.mob.errors" class="invalid-feedback">
+            <div *ngIf="f.mob.errors.required">Mobile Number is required</div>
+            <div *ngIf="f.mob.errors.minlength">MobileNo should be 10 digits</div>
+          </div>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="email" class="control-label">Email</label>
+          <input type="email" id="txtemail" placeholder="Email" class="form-control" formControlName="email"
+            name="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+          <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+            <div *ngIf="f.email.errors.required">Email is required</div>
+            <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+          </div>
+        </div>
+      </div>
+
+      <br />
+      <div class="form-row">
+        <div class="form-group col-md-4">
+          <label for="technology" class="control-label">Technology</label>
+          <select name="technology" id="technology" class="form-control" (change)="onSelect($event)">
+            <option value="1">.Net Developer</option>
+            <option value="2">Angular Developer</option>
+            <option value="3">Fullstack Developer</option>
+            <option value="4">Rust Developer</option>
+            <option value="5">PHP Developer</option>
+            <option value="6">Python Developer</option>
+            <option value="7">VueJs</option>
+            <option value="8">Tester</option>
+            <option value="9">Scrum Master</option>
+            <option value="10">Devops Engineer</option>
+            <option value="11">Agu</option>
+          </select>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="experience" class="control-label">Experience</label>
+          <input type="text" id="txtexperience" placeholder="experience" formControlName="exp"
+            (keypress)="keyPressNumbersDecimal($event)" [ngClass]="{ 'is-invalid': submitted && f.exp.errors }"
+            class="form-control">
+          <div *ngIf="submitted && f.exp.errors" class="invalid-feedback">
+            <div *ngIf="f.exp.errors.required">Experience is required</div>
+          </div>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="currentOrganization" class="control-label">Current Organization</label>
+          <input type="text" id="txtcurrentOrg" placeholder="Current Organization" formControlName="organization"
+            (keypress)="keyPressAlpha($event)" [ngClass]="{ 'is-invalid': submitted && f.organization.errors }"
+            class="form-control">
+          <div *ngIf="submitted && f.organization.errors" class="invalid-feedback">
+            <div *ngIf="f.organization.errors.required">Organization is required</div>
+          </div>
+        </div>
+      </div>
+      <br />
+      <div class="form-row">
+        <div class="form-group col-md-4">
+          <label for="currentctc" class="control-label">Current CTC (in lakhs)</label>
+          <input type="text" id="txtcurrentCtc" placeholder="Current CTC" formControlName="currentctc"
+            (keypress)="keyPressNumbersDecimal($event)" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.currentctc.errors }">
+          <div *ngIf="submitted && f.currentctc.errors" class="invalid-feedback">
+            <div *ngIf="f.currentctc.errors.required">Current CTC is required</div>
+          </div>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="expectedCtc" class="control-label">Expected CTC (in lakhs)</label>
+          <input type="text" id="expectedCtc" placeholder="Expected CTC" formControlName="expectedctc"
+            (keypress)="keyPressNumbersDecimal($event)" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.expectedctc.errors }">
+          <div *ngIf="submitted && f.expectedctc.errors" class="invalid-feedback">
+            <div *ngIf="f.expectedctc.errors.required">Expected CTC is required</div>
+          </div>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="noticeperiod" class="control-label">Notice Period (in days)</label>
+          <input type="text" id="noticeperiod" (keypress)="keyPressNumbers($event)" formControlName="noticeperiod"
+            placeholder="Notice Period" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.noticeperiod.errors }">
+          <div *ngIf="submitted && f.noticeperiod.errors" class="invalid-feedback">
+            <div *ngIf="f.noticeperiod.errors.required">Notice Period is required</div>
+          </div>
+        </div>
+      </div>
+      <br />
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="contactedby" class="control-label">Contacted by</label>
+          <input type="text" id="contactedby" placeholder="Contacted by" (keypress)="keyPressAlpha($event)"
+            class="form-control">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="technology" class="control-label">Source</label>
+          <select name="source" id="ddlsource" class="form-control" (change)="selectSourceType()">
+            <option value="1">Linkedin</option>
+            <option value="2">Naukri</option>
+            <option value="3">Hirist</option>
+            <option value="4">AK&Associates</option>
+            <option value="5">Referal</option>
+            <option value="6">Others</option>
+          </select>
+        </div>
+
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="contactedby" class="control-label">Interviewer</label>
+          <input type="text" id="txtinterviewermail" placeholder="Interviewer Mail"
+            class="form-control">
+        </div>
+        <div class="form-group col-md-6" *ngIf="displaysourcename">
+          <label for="contactedby" class="control-label">Source Name</label>
+          <input type="text" id="txtsourcename" placeholder="Source Name" (keypress)="keyPressAlpha($event)"
+            class="form-control">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="uploadresume" class="control-label">Upload Resume</label>
+
+          <input type="file" id="myFile" name="filename" class="form-control" formControlName="uploadresume"
+            [ngClass]="{ 'is-invalid': submitted && f.uploadresume.errors }"
+            (change)="onSelectFile($event.target.files)">
+          <div *ngIf="submitted && f.uploadresume.errors" class="invalid-feedback">
+            <div *ngIf="f.uploadresume.errors.required">Resume is required</div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="row">
+          <div class="col-md-9">
+          </div>
+          <div class="col-md-3" style="right: -35px;position: absolute;">
+            <button routerLink="/users" class="btn btn-info">Back</button>&nbsp;&nbsp;
+            <button type="submit" mat-raised-button color="primary" [class.spinner]="loading" [disabled]="loading">
+              Submit
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

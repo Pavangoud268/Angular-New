@@ -1,0 +1,101 @@
+<br />
+<h4 style="text-align: center;">Schedule Inteview</h4>
+<br />
+<div class="col-md-10 d-flex justify-content-center">
+  <div class="container">
+    <form class="form-horizontal" role="form" autocomplete="off" [formGroup]="registerForm" (ngSubmit)="postdata()">
+      <div class="form-row">
+        <div class="form-group col-md-4">
+          <label for="Name">Name</label>
+          <input type="text" id="txtName" disabled placeholder="Name" class="form-control">
+        </div>
+        <div class="form-group col-md-4">
+          <label for="MobileNumber" class="control-label">MobileNo</label>
+          <input type="text" id="txtmob" disabled placeholder="Mobile Number" class="form-control">
+        </div>
+        <div class="form-group col-md-4">
+          <label for="email" class="control-label">Email</label>
+          <input type="email" id="txtemail" disabled placeholder="Email" class="form-control" name="email">
+        </div>
+      </div>
+      <br />
+      <div class="form-row">
+        <div class="form-group col-md-4">
+          <label for="interviewtype" class="control-label">Interview Type</label>
+          <select name="interviewtype" id="ddlinterviewtype" formControlName="intrviewtype" class="form-control" (change)="selectInterviewType()"
+            [ngClass]="{ 'is-invalid': submitted && f.intrviewtype.errors }" class="form-control">
+            <option value="">Select</option>
+            <option value="1">F2F</option>
+            <option value="2">Zoom Call</option>
+          </select>
+          <div *ngIf="submitted && f.intrviewtype.errors" class="invalid-feedback">
+            <div *ngIf="f.intrviewtype.errors.required">Interview Type is required</div>
+          </div>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="experience" class="control-label">Date</label>
+          <input type="date" id="txtdate" placeholder="Date" formControlName="date"
+             [ngClass]="{ 'is-invalid': submitted && f.date.errors }"
+            class="form-control">
+          <div *ngIf="submitted && f.date.errors" class="invalid-feedback">
+            <div *ngIf="f.date.errors.required">Date is required</div>
+          </div>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="currentOrganization" class="control-label">Time</label>
+          <input type="time" id="txttime" placeholder="Time" formControlName="time"
+             [ngClass]="{ 'is-invalid': submitted && f.time.errors }"
+            class="form-control">
+          <div *ngIf="submitted && f.time.errors" class="invalid-feedback">
+            <div *ngIf="f.time.errors.required">Time is required</div>
+          </div>
+        </div>
+      </div>
+      <br />
+      <div class="form-row" *ngIf="displayF2fTextbox">
+        <div class="form-group col-md-4">
+          <label for="currentctc" class="control-label">Interviewer Name</label>
+          <input type="text" id="txtinterviwerName" placeholder="Interviewer Name" formControlName="interviewername" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.interviewername.errors }">
+          <div *ngIf="submitted && f.interviewername.errors" class="invalid-feedback">
+            <div *ngIf="f.interviewername.errors.required">Interviewer Name is required</div>
+          </div>
+        </div>
+      </div>
+      <div class="form-row" *ngIf="displayZoomTextbox">
+        <div class="form-group col-md-4">
+          <label for="currentctc" class="control-label">Zoom Link</label>
+          <textarea type="text" id="txtzoomLink" placeholder="Zoom Link Paste here" autocomplete="off" style="background-color: azure;" formControlName="zoomlink" rows="3" cols="50" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.zoomlink.errors }"></textarea>
+          <div *ngIf="submitted && f.zoomlink.errors" class="invalid-feedback">
+            <div *ngIf="f.zoomlink.errors.required">Zoom link is required</div>
+          </div>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="MeetingId" class="control-label">Meeting ID</label>
+          <input type="text" id="txtmeetingId" placeholder="Meeting Id" autocomplete="off" formControlName="meetingid" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.meetingid.errors }">
+          <div *ngIf="submitted && f.meetingid.errors" class="invalid-feedback">
+            <div *ngIf="f.meetingid.errors.required">Meeting ID is required</div>
+          </div>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="PassCode" class="control-label">PassCode</label>
+          <input type="text" id="txtpasscode" placeholder="PassCode" autocomplete="off" formControlName="passcode" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.passcode.errors }">
+          <div *ngIf="submitted && f.passcode.errors" class="invalid-feedback">
+            <div *ngIf="f.passcode.errors.required">PassCode is required</div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="row">
+          <div class="col-md-9"></div>
+          <div class="col-md-3" style="right: -36px;position: absolute;">
+            <button routerLink="/users" class="btn btn-info">Back</button>
+            &nbsp;
+            <button type="submit" mat-raised-button color="primary" [class.spinner]="loading" [disabled]="loading">
+              Submit
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

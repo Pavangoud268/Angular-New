@@ -13,7 +13,7 @@ export class ApiCallsService {
 
   formData = new Observable()
 
-   Getdata() :Observable <apiData[]>{
+  Getdata() :Observable <apiData[]>{
     return this.http.get<apiData[]>('https://682cbfb74fae18894753bb36.mockapi.io/demo/details')
   }
 

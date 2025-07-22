@@ -1,0 +1,4 @@
+{
+    "appService.deploySubpath": "dist",
+    "appService.defaultWebAppToDeploy": "/subscriptions/3e10edd7-2433-47e6-ae83-851619eb2a79/resourceGroups/Ariqt-Exam/providers/Microsoft.Web/sites/ariqtonlineexamportal"
+}

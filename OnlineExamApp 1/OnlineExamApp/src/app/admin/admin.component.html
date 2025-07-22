@@ -1,0 +1,135 @@
+<br/>
+<!-- <div class="navbar">
+  <a class="active" href="#"><i class="fa fa-fw fa-home"></i> Home</a>
+  <a href="#"><i class="fa fa-fw fa-question-circle-o"></i> Questions</a>
+  <a href="#"><i class="fa fa-fw fa-user"></i> Users</a>
+  <a href="#"><i class="fa fa-fw fa-sign-out"></i> Logout</a>
+</div> -->
+<div class="row">
+  <div class="col-md-12 col-sm-12 col-lg-12">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href=""><h1 style="color: rgb(23, 42, 206);">Admin Portal</h1></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="">Users <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" style="cursor: pointer" (click)="showQuations()" >Questions</a>
+      </li>
+    </ul>
+    <span class="navbar-text" >
+      <a class="nav-link" href="#"><i class="fa fa-fw fa-sign-out"></i>&nbsp;Logout</a>
+    </span>
+  </div>
+  </nav>
+</div>
+</div>
+
+<br/>
+
+<br/>
+<div class="row">
+  <!-- <div class="col-md-3 col-sm-3 col-lg-3" >
+ <ng-sidebar-container>
+    <ng-sidebar [opened]="true" class="bg-dark">
+  <h3>Menu</h3>
+  <ul class="menu">
+    <li><a href="">Home</a></li>
+    <li><a href="">Questions</a></li>
+    <li><a href="">Users</a></li>
+  </ul>
+    </ng-sidebar>
+  </ng-sidebar-container> -->
+
+
+  <!-- </div> --> 
+<div class="col-md-12 col-sm-12 col-lg-12" *ngIf="displayTable">
+<div class="row">
+    <div class="col-md-10">
+        </div>
+        <div class="col-md-2" style="right: -75px;">
+            <button type="submit" (click)="openAddUserPage()" class="btn btn-primary btn-block col-md-6"><i class="fa fa-fw fa-plus"></i>&nbsp;Add</button>
+        </div>
+</div>
+<br/>
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-hover table-bordered">
+            <thead>
+              <tr style="background-color: blueviolet;">
+                <th style="color: white;cursor:pointer;font-weight: 100;font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;" scope="col">S.No</th>
+                <th style="color: white;cursor:pointer;font-weight: 100;font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;" scope="col">User Name</th>
+                <th style="color: white;cursor:pointer;font-weight: 100;font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;" scope="col">Email</th>
+                <th style="color: white;cursor:pointer;font-weight: 100;font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;" scope="col">Mobile Number</th>
+                <th style="color: white;cursor:pointer;font-weight: 100;font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;" scope="col">Experience</th>
+                <th style="color: white;cursor:pointer;font-weight: 100;font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;" scope="col">Email</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr style='cursor:pointer' *ngFor="let row of userTableData">
+                    <td>{{row.userId}}</td>
+                    <td>{{ row.userName}}</td>
+                    <td>{{ row.email}}</td>
+                    <td>{{ row.mobileNo}}</td>
+                    <td>{{ row.experience}}</td>
+                    <td> <button class="btn-success form-control col-md-7" id="{{row.userId}}" (click)="sendMail($event)" id="btnSendMail"><i class="fa fa-fw fa-envelope"></i>&nbsp;Send</button></td>
+                    </tr>
+            </tbody>
+          </table>
+    </div>
+</div>
+</div>
+
+<div class="col-md-10 d-flex justify-content-center" *ngIf="displayAddPage">
+  <div class="container">
+    <form class="form-horizontal" role="form">
+        <div class="form-group">
+            <label for="Name" class="col-sm-3 control-label">User Name</label>
+            <div class="col-sm-9">
+                <input type="text" id="txtName" placeholder="Name" class="form-control" autofocus>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="MobileNumber" class="col-sm-3 control-label">Mobile Number</label>
+            <div class="col-sm-9">
+                <input type="number" id="txtmob" placeholder="Mobile Number" class="form-control" autofocus>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="email" class="col-sm-3 control-label">Email</label>
+            <div class="col-sm-9">
+                <input type="email" id="txtemail" placeholder="Email" class="form-control" name= "email">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="experience" class="col-sm-3 control-label">Experience</label>
+            <div class="col-sm-9">
+                <input type="text" id="txtexperience" placeholder="experience" class="form-control">
+            </div>
+        </div>
+        <div class="form-group" style="right: 0px;position: absolute;;">
+          <div class="row">
+            <div class="col-md-4" style="margin-left: -350px;">
+                <button  (click)="postdata()" class="btn btn-primary">Submit</button>
+            </div>
+
+            <div class="col-md-4" style="margin-left: -100px;">
+                <button  (click)="backPage()" class="btn btn-success">Back</button>
+            </div>
+            <div class="col-md-6"></div>
+            </div>
+        </div>
+    </form>
+</div>
+</div>
+<div class="col-md-10" *ngIf="displayQuestion">
+  <div class="container">
+    <app-questions></app-questions>
+    </div>
+    </div>
+
+  </div>

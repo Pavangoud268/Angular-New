@@ -1,0 +1,1244 @@
+<br />
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-4">
+    <h4 class="text-center" *ngIf="mode == 'result'">Exam Result</h4>
+  </div>
+  <div class="col-md-4">
+    <button
+      class="btn btn-primary"
+      *ngIf="mode == 'result'"
+      (click)="Returnpage()"
+    >
+      Back
+    </button>
+  </div>
+  <div class="col-md-2"></div>
+</div>
+<div class="row">
+  <div class="col-md-12 col-sm-12 col-lg-12" *ngIf="displayTable">
+    <div class="row">
+      <div class="form-group col-md-4">
+        <input
+          type="text"
+          class="form-control"
+          id="search"
+          style="margin-top: 2px"
+          (keypress)="keyPressAlphaWithSpaceAndNumber($event)"
+          [(ngModel)]="userName"
+          [(ngModel)]="mobileNo"
+          [(ngModel)]="email"
+          [(ngModel)]="experience"
+          (input)="Search()"
+          autocomplete="off"
+          placeholder="Search Name"
+          name="search"
+        />
+      </div>
+      <div class="form-group col-md-8">
+        <div class="row">
+          <div class="col-md-4">
+            <ngb-pagination
+              [collectionSize]="collectionSize"
+              [(page)]="page"
+              [pageSize]="pageSize"
+              (pageChange)="refreshCountries()"
+            >
+            </ngb-pagination>
+          </div>
+          <div class="col-md-2"></div>
+          <div class="col-md-3">
+            <select
+              class="custom-select"
+              style="width: auto"
+              [(ngModel)]="pageSize"
+              (ngModelChange)="refreshCountries()"
+            >
+              <option [ngValue]="15">15 Records</option>
+              <option [ngValue]="30">30 Records</option>
+              <option [ngValue]="45">45 Records</option>
+              <option [ngValue]="60">60 Records</option>
+              <option [ngValue]="75">75 Records</option>
+              <option [ngValue]="100">100 Records</option>
+            </select>
+          </div>
+          <div class="col-md-3">
+            <button
+              type="submit"
+              (click)="addCandidate()"
+              class="btn btn-primary col-md-12"
+            >
+              <i class="fa fa-fw fa-plus"></i>&nbsp;Add
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row" style="margin-top: -40px; margin-left: -100px">
+      <div class="col-md-12">
+        <br />
+        <table
+          class="table table-hover table-bordered"
+          style="border: 1px solid black"
+        >
+          <thead>
+            <tr style="background-color: #4c78d9">
+              <th
+                style="
+                  color: white;
+                  cursor: pointer;
+                  font-weight: 100;
+                  font-family: Cambria, Cochin, Georgia, Times,
+                    'Times New Roman', serif;
+                "
+                scope="col"
+              >
+                <span style="padding-right: 150px">Name</span>
+
+                <div class="btn-group float-right">
+                  <div
+                    class="dropdown-toggle"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    <img src="../../assets/filter.png" width="20" height="20" />
+                  </div>
+                  <div class="dropdown-menu p-0">
+                    <input
+                      placeholder="Name"
+                      [(ngModel)]="userName"
+                      (keypress)="colnamefilter($event)"
+                    />
+                  </div>
+                </div>
+              </th>
+              <th
+                style="
+                  color: white;
+                  cursor: pointer;
+                  font-weight: 100;
+                  font-family: Cambria, Cochin, Georgia, Times,
+                    'Times New Roman', serif;
+                "
+                scope="col"
+              >
+                Email
+                <div class="btn-group dropleft float-right">
+                  <div
+                    class="dropdown-toggle"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    <img src="../../assets/filter.png" width="20" height="20" />
+                  </div>
+                  <div class="dropdown-menu p-0">
+                    <input
+                      placeholder="Email"
+                      [(ngModel)]="emailaddr"
+                      (keypress)="colfilter($event)"
+                    />
+                  </div>
+                </div>
+              </th>
+              <th
+                style="
+                  color: white;
+                  cursor: pointer;
+                  font-weight: 100;
+                  font-family: Cambria, Cochin, Georgia, Times,
+                    'Times New Roman', serif;
+                "
+                scope="col"
+              >
+                <div class="dropdown">
+                  <span class="dropdown-toggle" data-toggle="dropdown">
+                    Technology
+                  </span>
+                  <div class="dropdown-menu dropdown-menu-left" id="ddltech">
+                    <option value="0" (click)="colfilter(0)">All</option>
+                    <option value="1" (click)="colfilter(1)">
+                      .Net Developer
+                    </option>
+                    <option value="2" (click)="colfilter(2)">
+                      Angular Developer
+                    </option>
+                    <option value="3" (click)="colfilter(3)">
+                      Fullstack Developer
+                    </option>
+                    <option value="4" (click)="colfilter(4)">
+                      Rust Developer
+                    </option>
+                    <option value="5" (click)="colfilter(5)">
+                      PHP Developer
+                    </option>
+                    <option value="6" (click)="colfilter(6)">
+                      Python Developer
+                    </option>
+                    <option value="7" (click)="colfilter(7)">VueJs</option>
+                    <option value="8" (click)="colfilter(8)">Tester</option>
+                    <option value="9" (click)="colfilter(9)">
+                      Scrum Master
+                    </option>
+                    <option value="10" (click)="colfilter(10)">
+                      Devops Engineer
+                    </option>
+                    <option value="11" (click)="colfilter(11)">Agu</option>
+                  </div>
+                </div>
+              </th>
+              <th
+                style="
+                  color: white;
+                  cursor: pointer;
+                  font-weight: 100;
+                  font-family: Cambria, Cochin, Georgia, Times,
+                    'Times New Roman', serif;
+                "
+                scope="col"
+              >
+                <div class="dropdown">
+                  <span class="dropdown-toggle" data-toggle="dropdown">
+                    Experience
+                  </span>
+                  <div class="dropdown-menu dropdown-menu-left">
+                    <option value="0" (click)="colexpfilter(0)">All</option>
+                    <option value="1" (click)="colexpfilter(1)">1</option>
+                    <option value="2" (click)="colexpfilter(2)">2</option>
+                    <option value="3" (click)="colexpfilter(3)">3</option>
+                    <option value="4" (click)="colexpfilter(4)">4</option>
+                    <option value="5" (click)="colexpfilter(5)">5</option>
+                    <option value="6" (click)="colexpfilter(6)">6</option>
+                    <option value="7" (click)="colexpfilter(7)">7</option>
+                    <option value="8" (click)="colexpfilter(8)">8</option>
+                    <option value="9" (click)="colexpfilter(9)">9</option>
+                    <option value="10" (click)="colexpfilter(10)">10</option>
+                    <option value="11" (click)="colexpfilter(11)">11</option>
+                    <option value="12" (click)="colexpfilter(12)">12</option>
+                    <option value="13" (click)="colexpfilter(13)">13</option>
+                    <option value="14" (click)="colexpfilter(14)">14</option>
+                    <option value="15" (click)="colexpfilter(15)">15</option>
+                  </div>
+                </div>
+              </th>
+              <th
+                style="
+                  color: white;
+                  cursor: pointer;
+                  font-weight: 100;
+                  font-family: Cambria, Cochin, Georgia, Times,
+                    'Times New Roman', serif;
+                "
+                scope="col"
+              >
+                <div class="dropdown">
+                  <span class="dropdown-toggle" data-toggle="dropdown">
+                    Date
+                  </span>
+                  <!-- <div class="dropdown-menu dropdown-menu-left">
+                    <input type="date" >
+                    <input type="date" >
+                  </div> -->
+                </div>
+              </th>
+              <th
+                style="
+                  color: white;
+                  cursor: pointer;
+                  font-weight: 100;
+                  font-family: Cambria, Cochin, Georgia, Times,
+                    'Times New Roman', serif;
+                "
+                scope="col"
+              >
+                <div class="dropdown">
+                  <span class="dropdown-toggle" data-toggle="dropdown">
+                    Source
+                  </span>
+                  <div class="dropdown-menu dropdown-menu-left" id="ddltech">
+                    <option value="0" (click)="colsrcfilter(0)">All</option>
+                    <option value="1" (click)="colsrcfilter('1')">
+                      Linkedin
+                    </option>
+                    <option value="2" (click)="colsrcfilter('2')">
+                      Naukri
+                    </option>
+                    <option value="3" (click)="colsrcfilter('3')">
+                      Hirist
+                    </option>
+                    <option value="4" (click)="colsrcfilter('4')">
+                      AK&Associates
+                    </option>
+                    <option value="5" (click)="colsrcfilter('5')">
+                      Referal
+                    </option>
+                    <option value="6" (click)="colsrcfilter('6')">
+                      Others
+                    </option>
+                  </div>
+                </div>
+              </th>
+              <th
+                style="
+                  color: white;
+                  cursor: pointer;
+                  font-weight: 100;
+                  font-family: Cambria, Cochin, Georgia, Times,
+                    'Times New Roman', serif;
+                "
+                scope="col"
+              >
+                Status
+              </th>
+              <th
+                style="
+                  color: white;
+                  cursor: pointer;
+                  font-weight: 100;
+                  font-family: Cambria, Cochin, Georgia, Times,
+                    'Times New Roman', serif;
+                "
+                scope="col"
+              >
+                UserStatus
+              </th>
+              <th
+                style="
+                  color: white;
+                  cursor: pointer;
+                  font-weight: 100;
+                  font-family: Cambria, Cochin, Georgia, Times,
+                    'Times New Roman', serif;
+                "
+                scope="col"
+              >
+                Actions
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="cursor: pointer" *ngFor="let row of userTableData2">
+              <td>{{ row.userName }}</td>
+              <td>{{ row.email }}</td>
+              <td *ngIf="row.technology == 1" class="col-md-3">
+                .Net Developer
+              </td>
+              <td *ngIf="row.technology == 2" class="col-md-3">
+                Angular Developer
+              </td>
+              <td *ngIf="row.technology == 3" class="col-md-3">
+                Fullstack Developer
+              </td>
+              <td *ngIf="row.technology == 4" class="col-md-3">
+                Rust Developer
+              </td>
+              <td *ngIf="row.technology == 5" class="col-md-3">
+                PHP Developer
+              </td>
+              <td *ngIf="row.technology == 6" class="col-md-3">
+                Python Developer
+              </td>
+              <td *ngIf="row.technology == 7" class="col-md-3">VueJs</td>
+              <td *ngIf="row.technology == 8" class="col-md-3">Tester</td>
+              <td *ngIf="row.technology == 9" class="col-md-3">Scrum Master</td>
+              <td *ngIf="row.technology == 10" class="col-md-3">Devops</td>
+              <td *ngIf="row.technology == 11" class="col-md-3">Agu</td>
+              <td *ngIf="row.technology == 12" class="col-md-3">
+                Developer Intern
+              </td>
+              <td *ngIf="row.technology == 13" class="col-md-3">QA Intern</td>
+              <td *ngIf="row.technology == 14" class="col-md-3">
+                AI/ML Intern
+              </td>
+              <td *ngIf="row.technology == 15" class="col-md-3">Data Intern</td>
+              <td>{{ row.experience }}</td>
+              <td class="col-md-3">{{ row.createdDate.split("T")[0] }}</td>
+              <td *ngIf="row.source == '1'" class="col-md-3">Linkedin</td>
+              <td *ngIf="row.source == '2'" class="col-md-3">Naukri</td>
+              <td *ngIf="row.source == '3'" class="col-md-3">Hirist</td>
+              <td *ngIf="row.source == '4'" class="col-md-3">AK&Associates</td>
+              <td *ngIf="row.source == '5'" class="col-md-3">Referal</td>
+              <td *ngIf="row.source == '6'" class="col-md-3">Others</td>
+              <td
+                *ngIf="row.isEmailSent == false"
+                class="font-weight-bold col-md-3"
+              >
+                <button
+                  class="btn-success form-control col-md3"
+                  id="{{ row.userId }}"
+                  (click)="sendMail(row)"
+                >
+                  <i class="fa fa-fw fa-paper-plane"></i>&nbsp;Send
+                </button>
+              </td>
+              <td
+                *ngIf="row.isEmailSent == true && row.examStatus == 3"
+                class="text-danger font-weight-bold col-md-3"
+              >
+                <button
+                  class="btn-info form-control col-md-10"
+                  (click)="getResult(row)"
+                  id="btnviewResult"
+                >
+                  <i class="fa fa-fw fa-eye"></i>&nbsp;Result
+                </button>
+              </td>
+              <td
+                *ngIf="row.isEmailSent == true && row.examStatus == 1"
+                class="text-danger font-weight-bold col-md-3"
+              >
+                Email Sent
+              </td>
+              <td
+                *ngIf="row.isEmailSent == true && row.examStatus == 2"
+                class="text-danger font-weight-bold col-md-3"
+              >
+                Progress
+              </td>
+
+              <td
+                *ngIf="row.isEmailSent == true && row.examStatus == 4"
+                class="text-danger font-weight-bold col-md-3"
+              >
+                Expired
+              </td>
+              <td class="text-info font-weight-bold">{{ row.userStatus }}</td>
+              <td class="col-md-12" style="color: brown">
+                <i
+                  class="fa fa-download"
+                  title="Download"
+                  (click)="download(row)"
+                ></i
+                >&nbsp;&nbsp;&nbsp;
+                <i
+                  class="fa fa-fw fa-eye"
+                  title="Details"
+                  (click)="getevaluationForm(viewdeatils, row)"
+                ></i
+                >&nbsp;&nbsp;&nbsp;
+                <i
+                  class="fa fa-pencil-square-o"
+                  title="Edit"
+                  (click)="editCompleteDeatils(editdeatils, row)"
+                ></i
+                >&nbsp;&nbsp;&nbsp;
+                <i
+                  class="fa fa-calendar"
+                  title="Schedule"
+                  (click)="scheduleInterview(row)"
+                ></i
+                >&nbsp;&nbsp;&nbsp;
+                <i
+                  class="fa fa-paper-plane"
+                  title="Send Evaluation Form"
+                  (click)="sendEvaluation(row)"
+                ></i
+                >&nbsp;&nbsp;&nbsp;
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <!--  -->
+        <div class="loading-indicator">
+          <mat-spinner *ngIf="loadspinner" diameter="45"></mat-spinner>
+          <!-- <mat-progress-spinner *ngIf="loadspinner" mode="determinate" value='66' diameter="45"></mat-progress-spinner> -->
+        </div>
+        <div class="d-flex justify-content-between p-2">
+          <ngb-pagination
+            [collectionSize]="collectionSize"
+            [(page)]="page"
+            [pageSize]="pageSize"
+            (pageChange)="refreshCountries()"
+          >
+          </ngb-pagination>
+
+          <select
+            class="custom-select"
+            style="width: auto"
+            [(ngModel)]="pageSize"
+            (ngModelChange)="refreshCountries()"
+          >
+            <option [ngValue]="15">15 Records</option>
+            <option [ngValue]="30">30 Records</option>
+            <option [ngValue]="45">45 Records</option>
+            <option [ngValue]="60">60 Records</option>
+            <option [ngValue]="75">75 Records</option>
+            <option [ngValue]="100">100 Records</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br />
+  <br />
+
+  <div class="result" *ngIf="mode == 'result'">
+    <div class="row">
+      <div
+        class="bg-white bg-auto"
+        style="border-style: groove; width: -webkit-fill-available"
+      >
+        <div class="col-md-12">
+          <div class="form-group row">
+            <div class="col-sm-6">
+              <label
+                for="inputEmail3"
+                class="col-sm-2 col-form-label font-weight-bold"
+                >Name:</label
+              >
+              <label>{{ selecteduser.userName }}</label>
+            </div>
+
+            <div class="col-sm-6">
+              <label
+                for="inputPassword3"
+                class="col-sm-2 col-form-label font-weight-bold"
+                >Email:</label
+              >
+              <label>{{ selecteduser.email }}</label>
+            </div>
+
+            <div class="col-sm-6">
+              <label
+                for="inputPassword3"
+                class="col-sm-3 col-form-label font-weight-bold"
+                >Technology:</label
+              >
+              <label *ngIf="selecteduser.technology == 1">.Net Developer</label>
+              <label *ngIf="selecteduser.technology == 2"
+                >Angular Developer</label
+              >
+              <label *ngIf="selecteduser.technology == 3"
+                >Fullstack Developer</label
+              >
+              <label *ngIf="selecteduser.technology == 4">Rust Developer</label>
+              <label *ngIf="selecteduser.technology == 5">PHP Developer</label>
+              <label *ngIf="selecteduser.technology == 6"
+                >Python Developer</label
+              >
+              <label *ngIf="selecteduser.technology == 7">VueJs</label>
+              <label *ngIf="selecteduser.technology == 8">Tester</label>
+              <label *ngIf="selecteduser.technology == 9">Scrum Master</label>
+              <label *ngIf="selecteduser.technology == 10"
+                >Devops Engineer</label
+              >
+              <label *ngIf="selecteduser.technology == 11">Agu</label>
+            </div>
+
+            <div class="col-sm-6">
+              <label
+                for="inputPassword3"
+                class="col-sm-2 col-form-label font-weight-bold"
+                >Score:</label
+              >
+              <label style="color: red; font-weight: bold"
+                >{{ TotalScore }}/{{ getNumberOfQuestions }} ({{
+                  ExamPercentage
+                }}%)</label
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="overflow-y: scroll; height: 600px; margin-top: 30px">
+        <div *ngFor="let question of quiz.questions; let index = index">
+          <div class="result-question">
+            <h5>{{ index + 1 }}. {{ question.question }}</h5>
+            <div class="row">
+              <div class="col-6" *ngFor="let Option of question.choices">
+                <div class="col-6" *ngIf="question.questionType == 1">
+                  <input
+                    id="{{ Option.choiceId }}"
+                    type="checkbox"
+                    disabled="disabled"
+                    [(ngModel)]="Option.selected"
+                  />
+                  {{ Option.option }}
+                </div>
+              </div>
+              <div class="col-12" *ngIf="question.questionType == 3">
+                <p
+                  [innerHTML]="question.code | nl2br"
+                  style="height: 300px"
+                  class="col-12 text-light bg-dark p-2"
+                ></p>
+              </div>
+            </div>
+            <div
+              class="p-1 m-2 alert {{
+                isCorrect(question) == 'Correct'
+                  ? 'alert-success'
+                  : 'alert-danger'
+              }}"
+            >
+              {{ isCorrect(question) }}.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card" *ngIf="mode == 'interview'">
+    <div class="bg-white bg-auto">
+      <div class="text-center">
+        <h4 style="background-color: gray">
+          Interview Evaluation Form
+          <button class="btn btn-primary" (click)="Returnpage()">Back</button>
+        </h4>
+        <br />
+      </div>
+      <table
+        class="table borderless table-condensed"
+        style="padding-right: 100px"
+      >
+        <tr>
+          <th style="width: 40%">Interviewer:</th>
+          <th style="width: 15%">{{ interviewuser.interviewer }}</th>
+          <th style="width: 15%">Date of Interview:</th>
+          <th style="width: 40%">{{ interviewuser.interviewDate | date }}</th>
+        </tr>
+        <tr>
+          <th style="width: 40%">Candidate Name:</th>
+          <th style="width: 15%">{{ interviewuser.userName }}</th>
+          <th style="width: 15%">Position:</th>
+          <th style="width: 40%" *ngIf="interviewuser.technology == 1">.Net</th>
+          <th style="width: 40%" *ngIf="interviewuser.technology == 2">
+            Angular
+          </th>
+          <th style="width: 40%" *ngIf="interviewuser.technology == 3">
+            Fullstack
+          </th>
+          <th style="width: 40%" *ngIf="interviewuser.technology == 4">Rust</th>
+          <th style="width: 40%" *ngIf="interviewuser.technology == 5">PHP</th>
+          <th style="width: 40%" *ngIf="interviewuser.technology == 6">
+            Python
+          </th>
+          <th style="width: 40%" *ngIf="interviewuser.technology == 7">
+            VueJs
+          </th>
+          <th style="width: 40%" *ngIf="interviewuser.technology == 8">
+            Tester
+          </th>
+          <th style="width: 40%" *ngIf="interviewuser.technology == 9">
+            Scrum Master
+          </th>
+          <th style="width: 40%" *ngIf="interviewuser.technology == 10">
+            Devops
+          </th>
+          <th style="width: 40%" *ngIf="interviewuser.technology == 11">Agu</th>
+        </tr>
+        <tr>
+          <th colspan="4">
+            <p style="background-color: gray">
+              Interview evaluation forms are to be completed by the interviewer
+              to rank the candidate’s overall qualifications for the position
+              for which they have applied. Under each heading, the interviewer
+              should give the candidate a numerical rating and write specific
+              job-related comments in the space provided. The numerical rating
+              system is based on the scale below.
+            </p>
+          </th>
+        </tr>
+        <tr>
+          <th style="width: 40%"></th>
+          <th colspan="2">Rating</th>
+          <th>Comments</th>
+        </tr>
+        <tr>
+          <th style="width: 40%">
+            Educational Background – Does the candidate have the appropriate
+            educational qualifications or training for this position?
+          </th>
+          <th colspan="2">
+            <span class="star-rating">
+              <input
+                type="radio"
+                name="rating1"
+                [checked]="rating1 == 1 ? true : false"
+                value="1"
+              /><i></i>
+              <input
+                type="radio"
+                name="rating1"
+                [checked]="rating1 == 2 ? true : false"
+                value="2"
+              /><i></i>
+              <input
+                type="radio"
+                name="rating1"
+                [checked]="rating1 == 3 ? true : false"
+                value="3"
+              /><i></i>
+              <input
+                type="radio"
+                name="rating1"
+                [checked]="rating1 == 4 ? true : false"
+                value="4"
+              /><i></i>
+              <input
+                type="radio"
+                name="rating1"
+                [checked]="rating1 == 5 ? true : false"
+                value="5"
+              /><i></i>
+            </span>
+          </th>
+          <th>
+            <textarea rows="3" class="form-control" id="txtrating1"></textarea>
+          </th>
+        </tr>
+        <tr>
+          <th>
+            Prior Work Experience – Has the candidate acquired similar skills or
+            qualifications through past work experiences
+          </th>
+          <th colspan="2">
+            <span class="star-rating">
+              <input
+                type="radio"
+                name="rating2"
+                [checked]="rating2 == 1 ? true : false"
+                value="1"
+              /><i></i>
+              <input
+                type="radio"
+                name="rating2"
+                [checked]="rating2 == 2 ? true : false"
+                value="2"
+              /><i></i>
+              <input
+                type="radio"
+                name="rating2"
+                [checked]="rating2 == 3 ? true : false"
+                value="3"
+              /><i></i>
+              <input
+                type="radio"
+                name="rating2"
+                [checked]="rating2 == 4 ? true : false"
+                value="4"
+              /><i></i>
+              <input
+                type="radio"
+                name="rating2"
+                [checked]="rating2 == 5 ? true : false"
+                value="5"
+              /><i></i>
+            </span>
+          </th>
+          <th>
+            <textarea rows="3" class="form-control" id="txtrating2"></textarea>
+          </th>
+        </tr>
+        <tr>
+          <th>
+            Technical Qualifications/Experience – Does the candidate have the
+            technical skills necessary for this position?
+          </th>
+          <th colspan="2">
+            <span class="star-rating">
+              <input
+                type="radio"
+                name="rating3"
+                [checked]="rating3 == 1 ? true : false"
+                value="1"
+              /><i></i>
+              <input
+                type="radio"
+                name="rating3"
+                [checked]="rating3 == 2 ? true : false"
+                value="2"
+              /><i></i>
+              <input
+                type="radio"
+                name="rating3"
+                [checked]="rating3 == 3 ? true : false"
+                value="3"
+              /><i></i>
+              <input
+                type="radio"
+                name="rating3"
+                [checked]="rating3 == 4 ? true : false"
+                value="4"
+              /><i></i>
+              <input
+                type="radio"
+                name="rating3"
+                [checked]="rating3 == 5 ? true : false"
+                value="5"
+              /><i></i>
+            </span>
+          </th>
+          <th>
+            <textarea rows="3" class="form-control" id="txtrating3"></textarea>
+          </th>
+        </tr>
+        <tr>
+          <th>
+            Verbal Communication – How were the candidate’s communication skills
+            during the interview?
+          </th>
+          <th colspan="2">
+            <span class="star-rating">
+              <input
+                type="radio"
+                name="rating4"
+                [checked]="rating4 == 1 ? true : false"
+                value="1"
+              /><i></i>
+              <input
+                type="radio"
+                name="rating4"
+                [checked]="rating4 == 2 ? true : false"
+                value="2"
+              /><i></i>
+              <input
+                type="radio"
+                name="rating4"
+                [checked]="rating4 == 3 ? true : false"
+                value="3"
+              /><i></i>
+              <input
+                type="radio"
+                name="rating4"
+                [checked]="rating4 == 4 ? true : false"
+                value="4"
+              /><i></i>
+              <input
+                type="radio"
+                name="rating4"
+                [checked]="rating4 == 5 ? true : false"
+                value="5"
+              /><i></i>
+            </span>
+          </th>
+          <th>
+            <textarea rows="3" class="form-control" id="txtrating4"></textarea>
+          </th>
+        </tr>
+        <tr>
+          <th>
+            Teambuilding/Interpersonal Skills – Did the candidate demonstrate,
+            through their answers, good teambuilding/interpersonal skills?
+          </th>
+          <th colspan="2">
+            <span class="star-rating">
+              <input
+                type="radio"
+                name="rating5"
+                [checked]="rating5 == 1 ? true : false"
+                value="1"
+              /><i></i>
+              <input
+                type="radio"
+                name="rating5"
+                [checked]="rating5 == 2 ? true : false"
+                value="2"
+              /><i></i>
+              <input
+                type="radio"
+                name="rating5"
+                [checked]="rating5 == 3 ? true : false"
+                value="3"
+              /><i></i>
+              <input
+                type="radio"
+                name="rating5"
+                [checked]="rating5 == 4 ? true : false"
+                value="4"
+              /><i></i>
+              <input
+                type="radio"
+                name="rating5"
+                [checked]="rating5 == 5 ? true : false"
+                value="5"
+              /><i></i>
+            </span>
+          </th>
+          <th>
+            <textarea rows="3" class="form-control" id="txtrating5"></textarea>
+          </th>
+        </tr>
+        <tr>
+          <th>
+            Ownership – Did the candidate demonstrate, through their answers, a
+            high degree of Ownership
+          </th>
+          <th colspan="2">
+            <span class="star-rating">
+              <input
+                type="radio"
+                name="rating6"
+                [checked]="rating6 == 1 ? true : false"
+                value="1"
+              /><i></i>
+              <input
+                type="radio"
+                name="rating6"
+                [checked]="rating6 == 2 ? true : false"
+                value="2"
+              /><i></i>
+              <input
+                type="radio"
+                name="rating6"
+                [checked]="rating6 == 3 ? true : false"
+                value="3"
+              /><i></i>
+              <input
+                type="radio"
+                name="rating6"
+                [checked]="rating6 == 4 ? true : false"
+                value="4"
+              /><i></i>
+              <input
+                type="radio"
+                name="rating6"
+                [checked]="rating6 == 5 ? true : false"
+                value="5"
+              /><i></i>
+            </span>
+          </th>
+          <th>
+            <textarea rows="3" class="form-control" id="txtrating6"></textarea>
+          </th>
+        </tr>
+        <tr>
+          <th>
+            Overall Impression and Recommendation – Summary of your perceptions
+            of the candidate’s strengths/weaknesses. Final comments and
+            recommendations for proceeding with the candidate.
+          </th>
+          <th colspan="2">
+            <span class="star-rating">
+              <input
+                type="radio"
+                name="rating7"
+                [checked]="rating7 == 1 ? true : false"
+                value="1"
+              /><i></i>
+              <input
+                type="radio"
+                name="rating7"
+                [checked]="rating7 == 2 ? true : false"
+                value="2"
+              /><i></i>
+              <input
+                type="radio"
+                name="rating7"
+                [checked]="rating7 == 3 ? true : false"
+                value="3"
+              /><i></i>
+              <input
+                type="radio"
+                name="rating7"
+                [checked]="rating7 == 4 ? true : false"
+                value="4"
+              /><i></i>
+              <input
+                type="radio"
+                name="rating7"
+                [checked]="rating7 == 5 ? true : false"
+                value="5"
+              /><i></i>
+            </span>
+          </th>
+          <th>
+            <textarea rows="3" class="form-control" id="txtrating7"></textarea>
+          </th>
+        </tr>
+      </table>
+      <br />
+    </div>
+  </div>
+
+  <ng-template #viewdeatils let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Details</h4>
+      <button
+        type="button"
+        class="close"
+        aria-label="Close"
+        (click)="modal.dismiss('Cross click')"
+      >
+        <span aria-hidden="true"> × </span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form>
+        <div class="form-group">
+          <label for="Name" style="color: blue">Current Organization</label>
+          <div class="input-group">
+            <input id="vieworg" disabled class="form-control" />
+          </div>
+          <br />
+          <label for="Name" style="color: blue">Current CTC (in lakhs)</label>
+          <div class="input-group">
+            <input id="viewcurrentctc" disabled class="form-control" />
+          </div>
+          <br />
+          <label for="Name" style="color: blue">Expected CTC (in lakhs)</label>
+          <div class="input-group">
+            <input id="viewexpectedctc" disabled class="form-control" />
+          </div>
+          <br />
+          <label for="Name" style="color: blue">Notice Period (in days)</label>
+          <div class="input-group">
+            <input id="viewnoticeperiod" disabled class="form-control" />
+          </div>
+          <br />
+          <label for="Name" style="color: blue">contacted by</label>
+          <div class="input-group">
+            <input id="viewcontactedby" disabled class="form-control" />
+          </div>
+          <br />
+          <label for="Name" style="color: blue">Mobile Number</label>
+          <div class="input-group">
+            <input id="btnMobileNumerbs" disabled class="form-control" />
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button
+        type="button"
+        class="btn btn-info"
+        (click)="modal.close('Close click')"
+        id="closegrid"
+      >
+        Cancel
+      </button>
+    </div>
+  </ng-template>
+
+  <!-- Update Details -->
+
+  <ng-template #editdeatils let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Edit Details</h4>
+      <button
+        type="button"
+        class="close"
+        aria-label="Close"
+        (click)="modal.dismiss('Cross click')"
+      >
+        <span aria-hidden="true"> × </span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form class="form-horizontal" role="form" autocomplete="off">
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label style="color: blue">Name</label>
+            <div class="input-group">
+              <input id="txteditName" class="form-control" />
+            </div>
+          </div>
+          <div class="form-group col-md-6">
+            <label style="color: blue">MobileNo</label>
+            <div class="input-group">
+              <input id="txteditMobileNo" class="form-control" />
+            </div>
+          </div>
+        </div>
+        <br />
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label style="color: blue">Email</label>
+            <div class="input-group">
+              <input id="txteditEmail" class="form-control" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label style="color: blue" class="col-sm-12 control-label"
+              >Technology</label
+            >
+            <div class="col-sm-12">
+              <select
+                name="selectedTechnology"
+                id="ddledittech"
+                formcontrolname="nameFormControl"
+                class="form-control"
+                [(ngModel)]="selectedTechnology"
+              >
+                <option
+                  *ngFor="let technologyType of technologyTypes"
+                  [value]="technologyType"
+                >
+                  {{ technologyType }}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <br />
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label style="color: blue">Experience</label>
+            <div class="input-group">
+              <input id="txteditExperience" class="form-control" />
+            </div>
+          </div>
+          <div class="form-group col-md-6">
+            <label style="color: blue">Current Organization</label>
+            <div class="input-group">
+              <input id="txteditCurrentOrganization" class="form-control" />
+            </div>
+          </div>
+        </div>
+        <br />
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label style="color: blue">Current CTC (in lakhs)</label>
+            <div class="input-group">
+              <input id="txteditCurrentCtc" class="form-control" />
+            </div>
+          </div>
+          <div class="form-group col-md-6">
+            <label style="color: blue">Expected CTC (in lakhs)</label>
+            <div class="input-group">
+              <input id="txteditExpectedCtc" class="form-control" />
+            </div>
+          </div>
+        </div>
+        <br />
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label style="color: blue">Notice Period (in days)</label>
+            <div class="input-group">
+              <input id="txteditNotice" class="form-control" />
+            </div>
+          </div>
+          <div class="form-group col-md-6">
+            <label style="color: blue">Contacted by</label>
+            <div class="input-group">
+              <input id="txteditContactedby" class="form-control" />
+            </div>
+          </div>
+          <div class="form-group col-md-6">
+            <label style="color: blue">Interviewer</label>
+            <div class="input-group">
+              <input id="txteditinterviewer" class="form-control" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label style="color: blue" class="col-sm-12 control-label"
+              >User Status</label
+            >
+            <div class="col-sm-12">
+              <select
+                name="selectedUserStatus"
+                id="ddluserstatus"
+                formcontrolname="nameFormControl"
+                class="form-control"
+                [(ngModel)]="selectedUserStatus"
+              >
+                <option
+                  *ngFor="let userStatus of userStatuses"
+                  [value]="userStatus"
+                >
+                  {{ userStatus }}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <br />
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <label style="color: blue">Upload Resume</label>
+            <div class="input-group">
+              <input
+                type="file"
+                id="myFile"
+                name="filename"
+                (change)="onSelectFile($event.target.files)"
+              />
+              <label style="color: blue">{{ filename }}</label>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button
+        type="button"
+        class="btn btn-info"
+        (click)="modal.close('Close click')"
+        id="updateclose"
+      >
+        Cancel</button
+      >&nbsp;&nbsp;
+      <button
+        type="submit"
+        mat-raised-button
+        color="primary"
+        (click)="UpdateCandidate()"
+        [class.spinner]="loading"
+        [disabled]="loading"
+      >
+        Update
+      </button>
+    </div>
+  </ng-template>
+  <!-- end Update Details -->
+
+  <!-- shedule thing -->
+  <ng-template #scheduledetails let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Interview Schedule</h4>
+      <button
+        type="button"
+        class="close"
+        aria-label="Close"
+        (click)="modal.dismiss('Cross click')"
+      >
+        <span aria-hidden="true"> × </span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form class="form-horizontal" role="form" autocomplete="off">
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label style="color: blue">Date</label>
+            <div class="input-group">
+              <input
+                type="date"
+                id="txtdates"
+                ng-model="date"
+                class="form-control"
+              />
+            </div>
+          </div>
+          <div class="form-group col-md-6">
+            <label style="color: blue">Time</label>
+            <div class="input-group">
+              <input id="txtTimes" type="time" class="form-control" />
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button
+        type="button"
+        class="btn btn-info"
+        (click)="modal.close('Close click')"
+        id="closegrid"
+      >
+        Cancel</button
+      >&nbsp;&nbsp;
+      <button
+        type="submit"
+        mat-raised-button
+        color="primary"
+        [class.spinner]="loading"
+        [disabled]="loading"
+      >
+        Submit
+      </button>
+    </div>
+  </ng-template>
+
+  <!-- End shedule thing -->
+</div>

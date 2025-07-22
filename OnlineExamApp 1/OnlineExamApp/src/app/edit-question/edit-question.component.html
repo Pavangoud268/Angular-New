@@ -1,0 +1,171 @@
+<br/>
+<h4 style="text-align: center;">Edit Question</h4>
+<div class="container">
+        <form class="form-horizontal" autocomplete="off" role="form">
+            <div class="form-group">
+                <label for="Questions Name" style="font-weight: bold;"  class="col-sm-12 control-label">Questions Name</label>
+                <div class="col-sm-12">
+                    <input type="text" id="txtquestionName" placeholder="Questions Name" class="form-control" autofocus>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="Question Type" style="font-weight: bold;" class="col-sm-12 control-label">Technology</label>
+                <div class="col-sm-12">
+                    <select name="selectedTechnology" id="ddlTechnology" class="form-control" [(ngModel)]="selectedTechnology">
+                        <option *ngFor="let technologyType of technologyTypes" [value]="technologyType">{{technologyType}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="Complexity" style="font-weight: bold;" class="col-sm-12 control-label">Complexity</label>
+                <div class="col-sm-12">
+                  <select id="selectedComplexity" class="form-control"  name="method" [(ngModel)]="selectedComplexity">
+                    <option *ngFor="let option of options" [value]="option">{{option}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="Question Type" style="font-weight: bold;" class="col-sm-12 control-label">Question Type</label>
+                <div class="col-sm-12">
+                    <select name="selectedQuestionType" id="ddlQuestionType" class="form-control"  (change)="selectQuetionsType()" [(ngModel)]="selectedQuestionType">
+                        <option *ngFor="let questionType of questionTypes" [value]="questionType">{{questionType}}</option>
+                    </select>
+                </div>
+            </div>
+        
+            <div class="row" [hidden]="!programedittextdata">
+              <div class="col-md-12">
+                <textarea type="text" style="background-color: aliceblue;" id="txtquestionProgram"  placeholder="Program type here" rows="10" cols="100" class="form-control" autofocus></textarea>
+                </div>
+              </div>
+
+              
+             
+         
+            <!-- <div class="row" [hidden]="!displaychoiceData">
+              <div class="col-md-12">
+            <table class="table table-striped table-bordered col-md-12">
+              <thead>
+                <tr>
+                  <th>Choices
+                    <a (click)="onEditCloseItems()" class="text-info float-right">
+                      <i class="mdi mdi-{{isEditItems ? 'close' : 'plus'}} mdi-18px"></i>
+                    </a>
+                  </th>
+                </tr>
+              </thead>
+              <tbody *ngIf="!isEditItems">
+                <tr *ngFor="let field of fieldArray; let i = index">
+                  <td *ngIf="field?.name">
+                    <i (click)="deleteFieldValue(i)" class="mdi mdi-close mdi-18px"></i> {{field.name}}
+                  </td>
+                </tr>
+              </tbody>
+        
+              <tbody *ngIf="isEditItems">
+                <tr *ngFor="let field of fieldArray; let ind = index">
+                  <td>
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <div (click)="deleteFieldValue(ind)" class="input-group-text">
+                          <i class="mdi mdi-close mdi-18px"></i>
+                        </div>
+                      </div>
+                      <input  class="form-control" id="field{{ind+1}}" autocomplete="off" type="text" name="{{field.name}}" placeholder="Choice...">
+                      &nbsp;&nbsp;&nbsp;
+                      <select id="ddldatatypesChoice" class="form-control" id="colval{{ind+1}}"  name="{{field.name}}">
+                        <option [selected] value="false">false</option>
+                        <option value="true">true</option>
+                      </select>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="right">
+                    <button *ngIf="fieldArray.length <= 10" class="btn btn-secondary btn-lg1" type="button" (click)="addFieldValue(fieldArray.length)" style="margin-right:10px">Add More Choice</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table> 
+            </div>
+            </div> -->
+
+            <!-- <div class="form-group" [hidden]="!individualoptions">
+              <label for="Questions Name" class="col-sm-12 control-label">Choices</label>
+              <div class="col-sm-12">
+                  <input type="text" id="txtopt1" placeholder="Option1" class="form-control" autofocus>
+                  <input type="text" id="txtopt2" placeholder="Option2" class="form-control" autofocus>
+                  <input type="text" id="txtopt3" placeholder="Option3" class="form-control" autofocus>
+                  <input type="text" id="txtopt4" placeholder="Option4" class="form-control" autofocus>
+              </div>
+          </div> -->
+  
+        </form>
+        <div class="row" [hidden]="!displaychoiceData">
+          <div class="col-md-12">
+        <table class="table table-striped table-bordered col-md-12">
+          <thead>
+            <tr>
+              <th>Choices
+                <a class="text-info float-right">
+                </a>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+    
+          <tbody>
+            <tr>
+              <td>
+                <div class="input-group">
+                  <input  class="form-control" id="txtopt1" autocomplete="off" type="text"  placeholder="Choice...">
+                  &nbsp;&nbsp;&nbsp;
+                  <select id="selecteddatatypesChoice1" class="form-control" [(ngModel)]="selectedddldatatypesChoice1">
+                    <option *ngFor="let datatypesChoice of datatypesChoice" [value]="datatypesChoice">{{datatypesChoice}}</option>
+                  </select>
+                </div>
+                <br/>
+                <div class="input-group">
+                  <input  class="form-control" id="txtopt2" autocomplete="off" type="text"  placeholder="Choice...">
+                  &nbsp;&nbsp;&nbsp;
+                  <select id="selectedddldatatypesChoice2" class="form-control" [(ngModel)]="selectedddldatatypesChoice2">
+                    <option *ngFor="let datatypesChoice of datatypesChoice" [value]="datatypesChoice">{{datatypesChoice}}</option>
+                  </select>
+                </div>
+                <br/>
+                <div class="input-group">
+                  <input  class="form-control" id="txtopt3" autocomplete="off" type="text"  placeholder="Choice...">
+                  &nbsp;&nbsp;&nbsp;
+                  <select id="selectedddldatatypesChoice3" class="form-control" [(ngModel)]="selectedddldatatypesChoice3">
+                    <option *ngFor="let datatypesChoice of datatypesChoice" [value]="datatypesChoice">{{datatypesChoice}}</option>
+                  </select>
+                </div>
+                <br/>
+                <div class="input-group">
+                  <input  class="form-control" id="txtopt4" autocomplete="off" type="text"  placeholder="Choice...">
+                  &nbsp;&nbsp;&nbsp;
+                  <select id="selectedddldatatypesChoice4" class="form-control" [(ngModel)]="selectedddldatatypesChoice4">
+                    <option *ngFor="let datatypesChoice of datatypesChoice" [value]="datatypesChoice">{{datatypesChoice}}</option>
+                  </select>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table> 
+        </div>
+        </div> 
+            <div class="form-group" >
+              <div class="row">
+                <div class="col-md-10"></div>
+                <div class="col-md-1" >
+                  <button  routerLink="/questions"  class="btn btn-info">Back</button>
+              </div>
+                <div class="col-md-1">
+                    <button (click)="updateQuestion()" class="btn btn-success">Submit</button>
+                </div>
+               
+              
+                </div>
+            </div>
+    </div>

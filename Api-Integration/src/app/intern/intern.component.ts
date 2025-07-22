@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+ import { Component, inject } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ApiCallsService } from '../Service/api-calls.service';
 import { apiData } from '../Model/apiData';

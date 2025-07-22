@@ -1,0 +1,172 @@
+<br>
+<div class="card">
+  <div class="bg-white bg-auto">
+    <div class="text-center" >
+      <h4 style="background-color:gray ;">Interview Evaluation Form</h4>
+      <br/>
+    </div>
+  <table class="table borderless table-condensed" style="padding-right: 100px;">
+<tr>
+  <th style="width: 40%;">Interviewer:</th>
+  <th style="width: 15%;">{{userdata.interviewer}}</th>
+  <th style="width: 15%;">Date of Interview:</th>
+  <th style="width: 40%;">{{userdata.interviewDate | date}}</th>
+</tr>
+<tr>
+  <th style="width: 40%;">Candidate Name:</th>
+  <th style="width: 15%;">{{userdata.userName}}</th>
+  <th style="width: 15%;">Position:</th>
+  <th style="width: 40%;" *ngIf="userdata.technology==1">.Net</th>
+  <th style="width: 40%;" *ngIf="userdata.technology==2">Angular</th>
+</tr>
+<tr>
+  <th colspan="4">
+    <p style="background-color: gray;">
+      Interview evaluation forms are to be completed by the interviewer to rank the candidate’s overall qualifications for the
+
+position for which they have applied. Under each heading, the interviewer should give the candidate a numerical rating
+
+and write specific job-related comments in the space provided. The numerical rating system is based on the scale below.
+    </p>
+  </th>
+</tr>
+<tr>
+  <th style="width: 40%;"></th>
+  <th colspan="2">Rating</th>
+  <th>Comments</th>
+</tr>
+<tr>
+  <th style="width:40%">
+    Educational Background – Does the candidate have the appropriate educational
+qualifications or training for this position?
+  </th>
+  <th colspan="2">
+    <span class="star-rating">
+      <input type="radio" name="rating1" value="1"><i></i>
+      <input type="radio" name="rating1" value="2"><i></i>
+      <input type="radio" name="rating1" value="3"><i></i>
+      <input type="radio" name="rating1" value="4"><i></i>
+      <input type="radio" name="rating1" value="5"><i></i>
+    </span>
+  </th>
+  <th>
+    <textarea rows="3" class="form-control" id="txtrating1"></textarea>
+  </th>
+</tr>
+<tr>
+  <th >
+    Prior Work Experience – Has the candidate acquired similar skills or qualifications through
+past work experiences
+  </th>
+  <th colspan="2">
+    <span class="star-rating">
+      <input type="radio" name="rating2" value="1"><i></i>
+      <input type="radio" name="rating2" value="2"><i></i>
+      <input type="radio" name="rating2" value="3"><i></i>
+      <input type="radio" name="rating2" value="4"><i></i>
+      <input type="radio" name="rating2" value="5"><i></i>
+    </span>
+  </th>
+  <th>
+    <textarea rows="3" class="form-control" id="txtrating2"></textarea>
+  </th>
+</tr>
+<tr>
+  <th>
+    Technical Qualifications/Experience – Does the candidate have the technical skills
+    necessary for this position?
+  </th>
+  <th colspan="2">
+    <span class="star-rating">
+      <input type="radio" name="rating3" value="1"><i></i>
+      <input type="radio" name="rating3" value="2"><i></i>
+      <input type="radio" name="rating3" value="3"><i></i>
+      <input type="radio" name="rating3" value="4"><i></i>
+      <input type="radio" name="rating3" value="5"><i></i>
+    </span>
+  </th>
+  <th>
+    <textarea rows="3" class="form-control" id="txtrating3"></textarea>
+  </th>
+</tr>
+<tr>
+  <th>
+    Verbal Communication – How were the candidate’s communication skills during the
+interview?
+  </th>
+  <th colspan="2">
+    <span class="star-rating">
+      <input type="radio" name="rating4" value="1"><i></i>
+      <input type="radio" name="rating4" value="2"><i></i>
+      <input type="radio" name="rating4" value="3"><i></i>
+      <input type="radio" name="rating4" value="4"><i></i>
+      <input type="radio" name="rating4" value="5"><i></i>
+    </span>
+  </th>
+  <th>
+    <textarea rows="3" class="form-control" id="txtrating4"></textarea>
+  </th>
+</tr>
+<tr>
+  <th>
+    Teambuilding/Interpersonal Skills – Did the candidate demonstrate, through their answers,
+good teambuilding/interpersonal skills?
+  </th>
+  <th  colspan="2">
+    <span class="star-rating">
+      <input type="radio" name="rating5" value="1"><i></i>
+      <input type="radio" name="rating5" value="2"><i></i>
+      <input type="radio" name="rating5" value="3"><i></i>
+      <input type="radio" name="rating5" value="4"><i></i>
+      <input type="radio" name="rating5" value="5"><i></i>
+    </span>
+  </th>
+  <th>
+    <textarea rows="3" class="form-control" id="txtrating5"></textarea>
+  </th>
+</tr>
+<tr>
+  <th>
+    Ownership – Did the candidate demonstrate, through their answers, a high degree of
+Ownership
+  </th>
+  <th colspan="2">
+    <span class="star-rating">
+      <input type="radio" name="rating6" value="1"><i></i>
+      <input type="radio" name="rating6" value="2"><i></i>
+      <input type="radio" name="rating6" value="3"><i></i>
+      <input type="radio" name="rating6" value="4"><i></i>
+      <input type="radio" name="rating6" value="5"><i></i>
+    </span>
+  </th>
+  <th>
+    <textarea rows="3" class="form-control" id="txtrating6"></textarea>
+  </th>
+</tr>
+<tr>
+  <th>
+    Overall Impression and Recommendation – Summary of your perceptions of
+the candidate’s strengths/weaknesses. Final comments and recommendations
+for proceeding with the candidate.
+  </th>
+  <th  colspan="2">
+    <span class="star-rating">
+      <input type="radio" name="rating7" value="1"><i></i>
+      <input type="radio" name="rating7" value="2"><i></i>
+      <input type="radio" name="rating7" value="3"><i></i>
+      <input type="radio" name="rating7" value="4"><i></i>
+      <input type="radio" name="rating7" value="5"><i></i>
+    </span>
+  </th>
+  <th>
+    <textarea rows="3" class="form-control" id="txtrating7"></textarea>
+  </th>
+</tr>
+  </table>
+  <br>
+  <div class="text-center">
+    <button type="submit" class="btn btn-info m-t waves-effect" *ngIf="!userdata.isReviewGiven" (click)="postevaluationform()">Submit</button>
+  </div>
+</div>
+
+
